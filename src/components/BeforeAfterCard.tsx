@@ -1,13 +1,25 @@
+import { InteractiveImage, SpotlightImage } from './InteractiveImage';
 import { BeforeAfterCase } from '../data/siteContent';
 
 type BeforeAfterCardProps = {
   item: BeforeAfterCase;
+  onPreviewStart: (image: SpotlightImage) => void;
+  onPreviewEnd: () => void;
+  onOpen: (image: SpotlightImage) => void;
 };
 
-export function BeforeAfterCard({ item }: BeforeAfterCardProps) {
+export function BeforeAfterCard({ item, onPreviewStart, onPreviewEnd, onOpen }: BeforeAfterCardProps) {
   return (
-    <article className="panel flex h-full flex-col rounded-[2rem] p-6">
-      <div className="flex items-start justify-between gap-4">
+    <article className="panel flex h-full flex-col overflow-hidden rounded-[2rem] p-4 sm:p-6">
+      <InteractiveImage
+        image={{ src: item.imageSrc, alt: item.imageAlt, label: item.vehicle }}
+        wrapperClassName="rounded-[1.5rem] border border-white/10 bg-slate-950/60"
+        imageClassName="h-56 w-full object-cover"
+        onPreviewStart={onPreviewStart}
+        onPreviewEnd={onPreviewEnd}
+        onOpen={onOpen}
+      />
+      <div className="mt-5 flex items-start justify-between gap-4">
         <div>
           <p className="text-sm uppercase tracking-[0.32em] text-slate-400">{item.workType}</p>
           <h3 className="mt-4 font-['Space_Grotesk'] text-2xl font-semibold text-white">{item.vehicle}</h3>

@@ -1,53 +1,113 @@
+import { useState } from 'react';
 import { BeforeAfterCard } from '../components/BeforeAfterCard';
 import { BookingForm } from '../components/BookingForm';
 import { ContactPanel } from '../components/ContactPanel';
 import { FaqList } from '../components/FaqList';
+import { ImageSpotlight } from '../components/ImageSpotlight';
+import { InteractiveImage, SpotlightImage } from '../components/InteractiveImage';
 import { SectionHeading } from '../components/SectionHeading';
 import { ServiceCard } from '../components/ServiceCard';
 import { ShowcaseCard } from '../components/ShowcaseCard';
-import { beforeAfterCases, processSteps, serviceHighlights, showcaseBuilds, stats } from '../data/siteContent';
+import { beforeAfterCases, heroGallery, processSteps, serviceHighlights, shopTheme, showcaseBuilds, stats } from '../data/siteContent';
 
 function App() {
+  const [hoveredImage, setHoveredImage] = useState<SpotlightImage | null>(null);
+  const [pinnedImage, setPinnedImage] = useState<SpotlightImage | null>(null);
+
+  const activeImage = pinnedImage ?? hoveredImage;
+
+  const previewThemeImage = {
+    src: shopTheme.imageSrc,
+    alt: shopTheme.imageAlt,
+    label: 'McClouds Collision and Customs logo'
+  };
+
+  const handlePreviewStart = (image: SpotlightImage) => {
+    if (pinnedImage) {
+      return;
+    }
+
+    setHoveredImage(image);
+  };
+
+  const handlePreviewEnd = () => {
+    if (pinnedImage) {
+      return;
+    }
+
+    setHoveredImage(null);
+  };
+
+  const handleOpenImage = (image: SpotlightImage) => {
+    setPinnedImage(image);
+    setHoveredImage(null);
+  };
+
+  const handleCloseImage = () => {
+    setPinnedImage(null);
+    setHoveredImage(null);
+  };
+
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(163,230,53,0.12),transparent_24%),radial-gradient(circle_at_80%_12%,rgba(34,211,238,0.14),transparent_22%)]">
+      <ImageSpotlight image={activeImage} pinned={Boolean(pinnedImage)} onClose={handleCloseImage} />
       <section className="relative isolate border-b border-white/10">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:72px_72px] opacity-30" />
-        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-cyan-400/20 to-transparent blur-3xl" />
-        <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 pb-16 pt-8 lg:px-8">
-          <header className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="font-['Space_Grotesk'] text-xl font-semibold uppercase tracking-[0.35em] text-slate-200">
-                McCloud&apos;s Collision and Custom
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:88px_88px] opacity-20" />
+        <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-lime-300/10 via-cyan-300/10 to-transparent blur-3xl" />
+        <div className="absolute left-[-8rem] top-24 h-72 w-72 rounded-full bg-lime-300/10 blur-[120px]" />
+        <div className="absolute right-[-6rem] top-32 h-80 w-80 rounded-full bg-cyan-300/10 blur-[140px]" />
+        <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 pb-20 pt-8 lg:px-8">
+          <header className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+            <div className="max-w-[38rem]">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-400">Cookeville, Tennessee</p>
+              <p className="mt-3 font-['Space_Grotesk'] text-xl font-semibold uppercase tracking-[0.32em] text-slate-100">
+                McCloud&apos;s Collision and Customs
               </p>
-              <p className="mt-2 text-sm text-slate-400">Collision repair, custom bodywork, paint, refinishing</p>
+              <p className="mt-2 text-sm text-slate-300">Collision repair, custom paint, bodywork, refinishing</p>
             </div>
             <a
               href="#booking"
-              className="inline-flex items-center justify-center self-start rounded-full border border-cyan-400/40 bg-cyan-400/10 px-5 py-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-300 hover:bg-cyan-300/15 sm:self-auto"
+              className="inline-flex items-center justify-center self-start rounded-full border border-lime-300/35 bg-lime-300/10 px-5 py-3 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15 sm:self-auto"
             >
               Book an Appointment
             </a>
           </header>
 
-          <div className="grid flex-1 items-center gap-14 py-16 lg:grid-cols-[1.2fr_0.8fr] lg:py-20">
+          <div className="grid flex-1 items-start gap-14 py-14 lg:grid-cols-[1fr_1.02fr] lg:py-20">
             <div>
-              <p className="inline-flex rounded-full border border-orange-400/30 bg-orange-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-orange-200">
-                Trusted collision and custom craftsmanship
+              <div className="relative mb-8 w-full max-w-[38rem]">
+                <div className="absolute inset-0 rounded-[2.25rem] bg-[radial-gradient(circle_at_18%_18%,rgba(163,230,53,0.22),transparent_26%),radial-gradient(circle_at_78%_28%,rgba(34,211,238,0.2),transparent_30%),linear-gradient(135deg,rgba(15,23,42,0.9),rgba(2,6,23,0.68))]" />
+                <InteractiveImage
+                  image={previewThemeImage}
+                  wrapperClassName="rounded-[2.25rem] border border-lime-300/20 bg-transparent px-5 py-5 shadow-[0_38px_120px_rgba(2,6,23,0.55)] sm:px-8 sm:py-7"
+                  imageClassName="relative mx-auto h-40 w-full object-contain sm:h-48 lg:h-56"
+                  overlayLabel="Open logo artwork"
+                  onPreviewStart={handlePreviewStart}
+                  onPreviewEnd={handlePreviewEnd}
+                  onOpen={handleOpenImage}
+                />
+              </div>
+              <p className="inline-flex rounded-full border border-lime-300/25 bg-lime-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-lime-100">
+                1309 W. Broad street, Cookeville, Tenneessee, 38501.
               </p>
-              <h1 className="mt-8 max-w-4xl font-['Space_Grotesk'] text-5xl font-semibold leading-none text-white sm:text-6xl lg:text-7xl">
-                Collision repair and custom builds finished to a higher standard.
+              <h1 className="mt-8 max-w-4xl font-['Space_Grotesk'] text-5xl font-semibold leading-[0.94] text-white sm:text-6xl lg:text-[5.2rem]">
+                Real repair work. Clean custom paint. A shop that still builds by hand.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                McCloud&apos;s Collision and Custom serves Cookeville, Tennessee with collision work, paint correction,
-                custom body upgrades, refinishing, and detail-first shop care that puts the vehicle back on the road
-                looking right.
+                McCloud&apos;s works on collision repair, custom paint, fabrication, bikes, trucks, and the kind of projects that need a shop willing to slow down and get the details right.
               </p>
+              <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-300">
+                <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2">Insurance repairs</span>
+                <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2">Custom paint</span>
+                <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2">Restoration work</span>
+                <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2">Bike and truck builds</span>
+              </div>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                 <a
                   href="#booking"
                   className="inline-flex items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
                 >
-                  Schedule a shop consultation
+                  Schedule a consult
                 </a>
                 <a
                   href="mailto:mccloudscollisioncustom@gmail.com?subject=Shop%20Inquiry"
@@ -57,47 +117,79 @@ function App() {
                 </a>
                 <a
                   href="tel:9313193933"
-                  className="inline-flex items-center justify-center rounded-full border border-orange-300/25 bg-orange-300/10 px-6 py-4 text-sm font-semibold text-orange-100 transition hover:border-orange-200 hover:bg-orange-300/15"
+                  className="inline-flex items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-300/10 px-6 py-4 text-sm font-semibold text-cyan-50 transition hover:border-cyan-200 hover:bg-cyan-300/15"
                 >
                   Give us a call: (931) 319-3933
                 </a>
               </div>
               <dl className="mt-12 grid gap-4 sm:grid-cols-3">
                 {stats.map((stat) => (
-                  <div key={stat.label} className="panel rounded-3xl p-5">
-                    <dt className="text-xs uppercase tracking-[0.3em] text-slate-400">{stat.label}</dt>
+                  <div key={stat.label} className="panel rounded-[1.75rem] p-5">
+                    <dt className="text-[0.7rem] uppercase tracking-[0.28em] text-slate-400">{stat.label}</dt>
                     <dd className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold text-white">{stat.value}</dd>
                   </div>
                 ))}
               </dl>
             </div>
 
-            <div className="panel relative overflow-hidden rounded-[2rem] p-6 sm:p-8">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/10 via-transparent to-orange-300/10" />
-              <div className="relative">
-                <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="max-w-sm">
-                    <p className="text-sm uppercase tracking-[0.32em] text-slate-400">Current queue</p>
-                    <h2 className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold text-white">Active repair and custom bookings</h2>
+            <div className="space-y-5 lg:pt-3">
+              <div className="panel relative overflow-hidden rounded-[2.25rem] p-5 sm:p-7">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(163,230,53,0.14),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.12),transparent_38%)]" />
+                <div className="relative">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="max-w-sm">
+                      <p className="text-sm uppercase tracking-[0.32em] text-slate-400">Recent work</p>
+                      <h2 className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold text-white">A few jobs that show the range of the shop.</h2>
+                    </div>
+                    <span className="inline-flex items-center justify-center rounded-full border border-lime-300/25 bg-lime-300/10 px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-lime-100">
+                      New work added
+                    </span>
                   </div>
-                  <span className="inline-flex min-w-[8.5rem] items-center justify-center self-start rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200 sm:self-auto">
-                    4 slots left
-                  </span>
+                  <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                    {heroGallery.map((item) => (
+                      <figure key={item.label} className="group overflow-hidden rounded-[1.9rem] border border-white/10 bg-slate-950/55">
+                        <InteractiveImage
+                          image={{ src: item.imageSrc, alt: item.imageAlt, label: item.label }}
+                          wrapperClassName=""
+                          imageClassName="h-56 w-full object-cover transition duration-700 group-hover:scale-[1.05] sm:h-60"
+                          onPreviewStart={handlePreviewStart}
+                          onPreviewEnd={handlePreviewEnd}
+                          onOpen={handleOpenImage}
+                        />
+                        <figcaption className="border-t border-white/10 px-4 py-4 text-sm font-medium text-slate-200">{item.label}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
                 </div>
-                <div className="mt-8 space-y-4">
-                  {processSteps.map((step, index) => (
-                    <div key={step.title} className="rounded-3xl border border-white/10 bg-slate-950/45 p-5 transition duration-200 hover:border-white/20 hover:bg-slate-950/55">
-                      <div className="flex items-start gap-4">
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-sm font-semibold text-slate-950">
-                          0{index + 1}
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-semibold text-white">{step.title}</h3>
-                          <p className="mt-2 text-sm leading-7 text-slate-300">{step.description}</p>
+              </div>
+
+              <div className="panel relative overflow-hidden rounded-[2.25rem] p-6 sm:p-8">
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.04),transparent_40%),radial-gradient(circle_at_right,rgba(34,211,238,0.12),transparent_35%)]" />
+                <div className="relative">
+                  <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="max-w-sm">
+                      <p className="text-sm uppercase tracking-[0.32em] text-slate-400">How the shop runs</p>
+                      <h2 className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold text-white">Simple process. Straight communication.</h2>
+                    </div>
+                    <span className="inline-flex min-w-[8.5rem] items-center justify-center self-start rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100 sm:self-auto">
+                      Booking now
+                    </span>
+                  </div>
+                  <div className="mt-8 space-y-4">
+                    {processSteps.map((step, index) => (
+                      <div key={step.title} className="rounded-3xl border border-white/10 bg-slate-950/45 p-5 transition duration-200 hover:border-white/20 hover:bg-slate-950/55">
+                        <div className="flex items-start gap-4">
+                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-sm font-semibold text-slate-950">
+                            0{index + 1}
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+                            <p className="mt-2 text-sm leading-7 text-slate-300">{step.description}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -113,7 +205,13 @@ function App() {
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {serviceHighlights.map((service) => (
-            <ServiceCard key={service.title} service={service} />
+            <ServiceCard
+              key={service.title}
+              service={service}
+              onPreviewStart={handlePreviewStart}
+              onPreviewEnd={handlePreviewEnd}
+              onOpen={handleOpenImage}
+            />
           ))}
         </div>
       </section>
@@ -126,7 +224,13 @@ function App() {
           />
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {showcaseBuilds.map((build) => (
-              <ShowcaseCard key={build.name} build={build} />
+              <ShowcaseCard
+                key={build.name}
+                build={build}
+                onPreviewStart={handlePreviewStart}
+                onPreviewEnd={handlePreviewEnd}
+                onOpen={handleOpenImage}
+              />
             ))}
           </div>
         </div>
@@ -139,7 +243,13 @@ function App() {
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {beforeAfterCases.map((item) => (
-            <BeforeAfterCard key={item.vehicle} item={item} />
+            <BeforeAfterCard
+              key={item.vehicle}
+              item={item}
+              onPreviewStart={handlePreviewStart}
+              onPreviewEnd={handlePreviewEnd}
+              onOpen={handleOpenImage}
+            />
           ))}
         </div>
       </section>
