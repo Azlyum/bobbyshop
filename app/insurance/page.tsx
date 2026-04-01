@@ -1,17 +1,18 @@
 import Image from "next/image";
 import { SectionHeading } from "../../src/components/SectionHeading";
 import { SiteShell } from "../../src/components/SiteShell";
-import {
-  beforeAfterCases,
-  serviceHighlights,
-} from "../../src/data/siteContent";
+import { serviceHighlights } from "../../src/data/siteContent";
 
 const mapsHref =
   "https://www.google.com/maps/dir/?api=1&destination=1309+W+Broad+St,+Cookeville,+TN+38501";
 
 export default function InsurancePage() {
   const collisionImage = serviceHighlights[0];
-  const repairCase = beforeAfterCases[2] ?? beforeAfterCases[0];
+  const repairCase = {
+    imageSrc:
+      "/Images/beforeAndAfter/organized_photos_aligned/after_work/project_03_red_classic_truck_after_work_03.jpg",
+    imageAlt: "Finished red classic truck after bodywork and paint",
+  };
 
   return (
     <SiteShell>
@@ -110,13 +111,13 @@ export default function InsurancePage() {
             ))}
           </div>
           <div className="mt-12 panel rounded-[2rem] p-4 sm:p-5">
-            <div className="relative h-72 w-full overflow-hidden rounded-[1.5rem] bg-slate-950/40">
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[1.5rem] bg-slate-950/40">
               <Image
                 src={repairCase.imageSrc}
                 alt={repairCase.imageAlt}
                 fill
                 sizes="100vw"
-                className="object-contain p-3"
+                className="object-cover"
               />
             </div>
             <p className="mt-5 text-sm uppercase tracking-[0.28em] text-slate-400">
