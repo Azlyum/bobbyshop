@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BeforeAfterCard } from "./BeforeAfterCard";
 import { GalleryModal } from "./GalleryModal";
 import { ImageSpotlight } from "./ImageSpotlight";
@@ -15,16 +15,78 @@ export function GalleryPageContent() {
   const [spotlightOrigin, setSpotlightOrigin] = useState<"gallery" | "cards" | null>(
     null,
   );
+  const skipNextGalleryHistoryPush = useRef(false);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      if (activeImage && spotlightOrigin === "gallery") {
+        skipNextGalleryHistoryPush.current = true;
+        setActiveImage(null);
+        setSpotlightOrigin(null);
+        setGalleryOpen(true);
+        return;
+      }
+
+      if (galleryOpen) {
+        setGalleryOpen(false);
+        return;
+      }
+
+      if (activeImage) {
+        setActiveImage(null);
+        setSpotlightOrigin(null);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [activeImage, galleryOpen, spotlightOrigin]);
+
+  useEffect(() => {
+    if (!galleryOpen) {
+      return;
+    }
+
+    if (skipNextGalleryHistoryPush.current) {
+      skipNextGalleryHistoryPush.current = false;
+      return;
+    }
+
+    window.history.pushState({ overlay: "gallery" }, "", window.location.href);
+  }, [galleryOpen]);
+
+  useEffect(() => {
+    if (!activeImage || spotlightOrigin !== "gallery") {
+      return;
+    }
+
+    window.history.pushState(
+      { overlay: "gallery-image" },
+      "",
+      window.location.href,
+    );
+  }, [activeImage, spotlightOrigin]);
+
+  function requestCloseGallery() {
+    if (galleryOpen) {
+      window.history.back();
+      return;
+    }
+
+    setGalleryOpen(false);
+  }
 
   function handleCloseSpotlight() {
-    const shouldRestoreGallery = spotlightOrigin === "gallery";
+    if (activeImage && spotlightOrigin === "gallery") {
+      window.history.back();
+      return;
+    }
 
     setActiveImage(null);
     setSpotlightOrigin(null);
-
-    if (shouldRestoreGallery) {
-      setGalleryOpen(true);
-    }
   }
 
   return (
@@ -32,7 +94,7 @@ export function GalleryPageContent() {
       <GalleryModal
         images={heroGallery}
         open={galleryOpen}
-        onClose={() => setGalleryOpen(false)}
+        onClose={requestCloseGallery}
         onOpenImage={(image) => {
           setGalleryOpen(false);
           setSpotlightOrigin("gallery");
