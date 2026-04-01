@@ -26,6 +26,7 @@ function App() {
     title: string;
     description: string;
   };
+  type SpotlightSource = "page" | "gallery" | null;
 
   const heroServiceLinks = [
     {
@@ -62,6 +63,8 @@ function App() {
   const previewEndTimeoutRef = useRef<number | null>(null);
   const previewHistoryActiveRef = useRef(false);
   const suppressPreviewPopCloseRef = useRef(false);
+  const spotlightSourceRef = useRef<SpotlightSource>(null);
+  const restoreGalleryAfterSpotlightRef = useRef(false);
   const heroSectionRef = useRef<HTMLElement | null>(null);
   const facebookHref =
     "https://www.facebook.com/profile.php?id=61555435137428&__tn__=%2Cd";
@@ -176,11 +179,31 @@ function App() {
       previewHistoryActiveRef.current = true;
     }
 
+    spotlightSourceRef.current = "page";
+    restoreGalleryAfterSpotlightRef.current = false;
+    setPinnedImage(image);
+    setHoveredImage(null);
+  };
+
+  const handleOpenGalleryImage = (image: SpotlightImage) => {
+    if (galleryOpen) {
+      setGalleryOpen(false);
+    }
+
+    if (!pinnedImage && !previewHistoryActiveRef.current) {
+      window.history.pushState({ imagePreview: true }, "");
+      previewHistoryActiveRef.current = true;
+    }
+
+    spotlightSourceRef.current = "gallery";
+    restoreGalleryAfterSpotlightRef.current = true;
     setPinnedImage(image);
     setHoveredImage(null);
   };
 
   const handleCloseImage = () => {
+    const shouldRestoreGallery = restoreGalleryAfterSpotlightRef.current;
+
     if (previewHistoryActiveRef.current) {
       suppressPreviewPopCloseRef.current = true;
       previewHistoryActiveRef.current = false;
@@ -188,8 +211,14 @@ function App() {
       return;
     }
 
+    spotlightSourceRef.current = null;
+    restoreGalleryAfterSpotlightRef.current = false;
     setPinnedImage(null);
     setHoveredImage(null);
+
+    if (shouldRestoreGallery) {
+      setGalleryOpen(true);
+    }
   };
 
   const handleOpenGallery = () => {
@@ -197,6 +226,10 @@ function App() {
   };
 
   const handleCloseGallery = () => {
+    if (spotlightSourceRef.current !== "gallery") {
+      restoreGalleryAfterSpotlightRef.current = false;
+    }
+
     setGalleryOpen(false);
   };
 
@@ -216,16 +249,31 @@ function App() {
   useEffect(() => {
     const handlePopState = () => {
       if (suppressPreviewPopCloseRef.current) {
+        const shouldRestoreGallery = restoreGalleryAfterSpotlightRef.current;
         suppressPreviewPopCloseRef.current = false;
+        spotlightSourceRef.current = null;
+        restoreGalleryAfterSpotlightRef.current = false;
         setPinnedImage(null);
         setHoveredImage(null);
+
+        if (shouldRestoreGallery) {
+          setGalleryOpen(true);
+        }
+
         return;
       }
 
       if (previewHistoryActiveRef.current) {
+        const shouldRestoreGallery = restoreGalleryAfterSpotlightRef.current;
         previewHistoryActiveRef.current = false;
+        spotlightSourceRef.current = null;
+        restoreGalleryAfterSpotlightRef.current = false;
         setPinnedImage(null);
         setHoveredImage(null);
+
+        if (shouldRestoreGallery) {
+          setGalleryOpen(true);
+        }
       }
     };
 
@@ -260,7 +308,8 @@ function App() {
         setShowFloatingCallPill(!entry.isIntersecting);
       },
       {
-        threshold: 0.2,
+        threshold: 0,
+        rootMargin: "0px 0px -35% 0px",
       },
     );
 
@@ -331,6 +380,7 @@ function App() {
         images={heroGallery}
         open={galleryOpen}
         onClose={handleCloseGallery}
+        onOpenImage={handleOpenGalleryImage}
       />
       <ImageSpotlight
         image={activeImage}
