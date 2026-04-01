@@ -14,7 +14,12 @@ export function ServiceCard({ service, onPreviewStart, onPreviewEnd, onOpen }: S
   return (
     <article className="panel group flex h-full flex-col overflow-hidden rounded-[2rem] p-4 sm:p-6">
       <InteractiveImage
-        image={{ src: service.imageSrc, alt: service.imageAlt, label: service.title }}
+        image={{
+          src: service.imageSrc,
+          alt: service.imageAlt,
+          label: service.title,
+          sizes: '(max-width: 1024px) 100vw, 33vw'
+        }}
         wrapperClassName="rounded-[1.5rem] border border-white/10 bg-slate-950/60"
         imageClassName="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.02]"
         onPreviewStart={onPreviewStart}

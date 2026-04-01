@@ -1,8 +1,12 @@
+import Image from 'next/image';
+
 export type SpotlightImage = {
   src: string;
   alt: string;
   label?: string;
   gallery?: SpotlightImage[];
+  sizes?: string;
+  priority?: boolean;
 };
 
 type InteractiveImageProps = {
@@ -35,7 +39,15 @@ export function InteractiveImage({
       onClick={() => onOpen(image)}
       aria-label={`${overlayLabel}: ${image.alt}`}
     >
-      <img src={image.src} alt={image.alt} className={imageClassName} />
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={1600}
+        height={1200}
+        sizes={image.sizes ?? '100vw'}
+        priority={image.priority}
+        className={imageClassName}
+      />
       <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" />
       <span className="pointer-events-none absolute inset-0 bg-white/0 transition duration-300 group-hover:bg-white/[0.04] group-focus-visible:bg-white/[0.04]" />
       <span className="pointer-events-none absolute bottom-3 left-3 rounded-full border border-white/15 bg-black/45 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">

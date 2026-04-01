@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { GalleryImage } from '../data/siteContent';
 import { SpotlightImage } from './InteractiveImage';
@@ -103,11 +104,15 @@ export function GalleryModal({
                   });
                 }}
               >
-                <img
-                  src={item.imageSrc}
-                  alt={item.imageAlt}
-                  className="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.04] group-hover:brightness-110"
-                />
+                <div className="relative h-56 w-full">
+                  <Image
+                    src={item.imageSrc}
+                    alt={item.imageAlt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                    className="object-cover transition duration-500 group-hover:scale-[1.04] group-hover:brightness-110"
+                  />
+                </div>
                 <div className="border-t border-white/10 px-4 py-4">
                   <p className="text-sm font-medium text-slate-100">{item.label}</p>
                 </div>

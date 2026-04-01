@@ -14,7 +14,12 @@ export function ShowcaseCard({ build, onPreviewStart, onPreviewEnd, onOpen }: Sh
       <div className={`absolute inset-0 opacity-70 blur-3xl transition group-hover:opacity-100 ${build.glowClass}`} />
       <div className="relative flex h-full flex-col">
         <InteractiveImage
-          image={{ src: build.imageSrc, alt: build.imageAlt, label: build.name }}
+          image={{
+            src: build.imageSrc,
+            alt: build.imageAlt,
+            label: build.name,
+            sizes: '(max-width: 1024px) 100vw, 33vw'
+          }}
           wrapperClassName="rounded-[1.5rem] border border-white/10 bg-slate-950/60"
           imageClassName="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
           onPreviewStart={onPreviewStart}

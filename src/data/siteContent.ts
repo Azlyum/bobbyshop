@@ -42,13 +42,13 @@ export type GalleryImage = {
 };
 
 export const shopTheme = {
-  imageSrc: '/Images/mcclouds-brand_after-logo.png',
+  imageSrc: '/Images/mcclouds-brand_after-logo.webp',
   imageAlt: "McCloud's Collision and Customs illustrated shop logo"
 } as const;
 
 export const stats = [
   { label: 'Years experience', value: '35+' },
-  { label: 'Insurance repair help', value: 'Yes' },
+  { label: 'Insurance claims', value: 'Welcome' },
   { label: 'Based in', value: 'Cookeville, TN' }
 ] as const;
 
@@ -74,7 +74,7 @@ export const serviceHighlights: ServiceHighlight[] = [
     description: 'From bent front clips to side-hit damage, we handle the repair work, panel fit, and paint match without making the job feel like a production line.',
     points: ['Insurance claims and estimate support.', 'Panel repair, replacement, and fitment.', 'Paint match, blend work, and cleanup.'],
     pointsStyle: 'text',
-    imageSrc: '/Images/pickup-red-white_after-rear-side.png',
+    imageSrc: '/Images/pickup-red-white_after-rear-side.webp',
     imageAlt: 'Custom painted McClouds pickup truck viewed from the rear side'
   },
   {
@@ -83,7 +83,7 @@ export const serviceHighlights: ServiceHighlight[] = [
     description: 'Need a repair blended in, a bike repainted, or a full custom color laid down? That is the kind of work this shop is known for.',
     points: ['Color match and blend repair', 'Full repaints and custom color', 'Graphics, polishing, and final detail'],
     pointsStyle: 'text',
-    imageSrc: '/Images/harley-white-graphics_after-side.png',
+    imageSrc: '/Images/harley-white-graphics_after-side.webp',
     imageAlt: 'Blue touring motorcycle with custom white graphics in a paint booth'
   },
   {
@@ -92,7 +92,7 @@ export const serviceHighlights: ServiceHighlight[] = [
     description: 'Old trucks, bike parts, fiberglass pieces, rust repair, and one of a kind custom ideas all get the same attention as the collision side of the shop.',
     points: ['Rust repair and restoration work.', 'Fiberglass and body mods.', 'Sandblasting and specialty add-ons.'],
     pointsStyle: 'text',
-    imageSrc: '/Images/harley-tank-blue-flames_after.png',
+    imageSrc: '/Images/harley-tank-blue-flames_after.webp',
     imageAlt: 'Harley-Davidson fuel tank with blue flame-style custom paint'
   }
 ];
@@ -105,7 +105,7 @@ export const showcaseBuilds: ShowcaseBuild[] = [
     timeline: 'Estimate to handoff',
     finish: 'Clean factory-style fit',
     glowClass: 'bg-cyan-400/20',
-    imageSrc: '/Images/jeep-orange_after-front-side.png',
+    imageSrc: '/Images/jeep-orange_after-front-side.webp',
     imageAlt: 'Orange custom Jeep Wrangler parked outdoors'
   },
   {
@@ -115,7 +115,7 @@ export const showcaseBuilds: ShowcaseBuild[] = [
     timeline: 'Prep, paint, and cut',
     finish: 'Deep gloss finish',
     glowClass: 'bg-orange-400/20',
-    imageSrc: '/Images/harley-green-flames_after-side.png',
+    imageSrc: '/Images/harley-green-flames_after-side.webp',
     imageAlt: 'Green and black Harley-Davidson motorcycle with custom flames'
   },
   {
@@ -125,7 +125,7 @@ export const showcaseBuilds: ShowcaseBuild[] = [
     timeline: 'Measured mockup and finish',
     finish: 'Custom show finish',
     glowClass: 'bg-fuchsia-400/20',
-    imageSrc: '/Images/pickup-white-doors_after-front.png',
+    imageSrc: '/Images/pickup-white-doors_after-front.webp',
     imageAlt: 'White custom Chevrolet truck with vertical doors open'
   }
 ];
@@ -133,67 +133,67 @@ export const showcaseBuilds: ShowcaseBuild[] = [
 export const heroGallery: GalleryImage[] = [
   {
     label: 'Jeep finish',
-    imageSrc: '/Images/jeep-rubicon-wrap_after-front-side.png',
+    imageSrc: '/Images/jeep-rubicon-wrap_after-front-side.webp',
     imageAlt: 'Branded Jeep Rubicon parked outside near a building and American flag'
   },
   {
     label: 'Signature bagger build',
-    imageSrc: '/Images/bagger-green_after-side.png',
+    imageSrc: '/Images/bagger-green_after-side.webp',
     imageAlt: 'White bagger motorcycle with green graphics parked in front of the shop'
   },
   {
     label: 'Candy green paint work',
-    imageSrc: '/Images/harley-green_after-front-side.png',
+    imageSrc: '/Images/harley-green_after-front-side.webp',
     imageAlt: 'Bright green Harley-Davidson motorcycle inside the shop'
   },
   {
     label: 'Airbrushed tank detail',
-    imageSrc: '/Images/harley-tank-flames_after.png',
+    imageSrc: '/Images/harley-tank-flames_after.webp',
     imageAlt: 'Harley-Davidson fuel tank with orange flame custom paint'
   },
   {
     label: 'Checker bike finish',
-    imageSrc: '/Images/harley-checker_after-front-side.png',
+    imageSrc: '/Images/harley-checker_after-front-side.webp',
     imageAlt: 'Blue Harley-Davidson touring bike with checker graphics finished outside the shop'
   },
   {
     label: 'Green flame bike',
-    imageSrc: '/Images/harley-green-flames_after-side.png',
+    imageSrc: '/Images/harley-green-flames_after-side.webp',
     imageAlt: 'Green Harley-Davidson with custom flames after paint'
   },
   {
     label: 'Flame saddlebags',
-    imageSrc: '/Images/harley-saddlebags-flames_after.png',
+    imageSrc: '/Images/harley-saddlebags-flames_after.webp',
     imageAlt: 'Custom saddlebags with flame graphics after paint'
   },
   {
     label: 'Blue flame tank',
-    imageSrc: '/Images/harley-tank-blue-flames_after.png',
+    imageSrc: '/Images/harley-tank-blue-flames_after.webp',
     imageAlt: 'Motorcycle tank with blue flames after custom paint'
   },
   {
     label: 'White graphic bike',
-    imageSrc: '/Images/harley-white-graphics_after-side.png',
+    imageSrc: '/Images/harley-white-graphics_after-side.webp',
     imageAlt: 'Touring motorcycle with white graphics after paint'
   },
   {
     label: 'Orange Jeep build',
-    imageSrc: '/Images/jeep-orange_after-front-side.png',
+    imageSrc: '/Images/jeep-orange_after-front-side.webp',
     imageAlt: 'Orange Jeep after custom body and paint work'
   },
   {
     label: 'Pink Jeep finish',
-    imageSrc: '/Images/jeep-pink_after-side.png',
+    imageSrc: '/Images/jeep-pink_after-side.webp',
     imageAlt: 'Pink Jeep after custom paint work'
   },
   {
     label: 'Red and white pickup',
-    imageSrc: '/Images/pickup-red-white_after-rear-side.png',
+    imageSrc: '/Images/pickup-red-white_after-rear-side.webp',
     imageAlt: 'Red and white pickup after paint and finish work'
   },
   {
     label: 'White door truck',
-    imageSrc: '/Images/pickup-white-doors_after-front.png',
+    imageSrc: '/Images/pickup-white-doors_after-front.webp',
     imageAlt: 'White custom truck with vertical doors after bodywork'
   },
   {

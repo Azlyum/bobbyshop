@@ -5,7 +5,7 @@ const siteUrl = "https://www.mccloudscollision.com";
 const siteName = "McCloud's Collision and Customs";
 const siteDescription =
   "McCloud's Collision and Customs in Cookeville, Tennessee provides collision repair, custom paint, bodywork, refinishing, in-house paint mixing, and direct contact for estimates and shop inquiries.";
-const ogImage = `${siteUrl}/Images/mcclouds-brand_after-logo.png`;
+const ogImage = `${siteUrl}/Images/mcclouds-brand_after-logo.jpg`;
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -129,7 +129,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <noscript dangerouslySetInnerHTML={{ __html: noscriptText }} />
         {children}
         <script

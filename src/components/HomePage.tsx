@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BeforeAfterCard } from "../components/BeforeAfterCard";
 import { ContactPanel } from "../components/ContactPanel";
@@ -93,11 +94,6 @@ function HomePage() {
     );
   }, [beforeAfterStartIndex]);
 
-  const previewThemeImage = {
-    src: shopTheme.imageSrc,
-    alt: shopTheme.imageAlt,
-    label: "McClouds Collision and Customs logo",
-  };
   const heroTransformationBefore = useMemo<SpotlightImage>(() => {
     const beforeImage = heroTransformationCase.gallery?.find((image) =>
       image.label.toLowerCase().includes("before"),
@@ -112,6 +108,7 @@ function HomePage() {
       src: beforeImage.imageSrc,
       alt: beforeImage.imageAlt,
       label: `${heroTransformationCase.vehicle} before`,
+      sizes: "(max-width: 1024px) 100vw, 50vw",
     };
   }, [heroTransformationCase]);
   const heroTransformationAfter = useMemo<SpotlightImage>(
@@ -119,6 +116,7 @@ function HomePage() {
       src: heroTransformationCase.imageSrc,
       alt: heroTransformationCase.imageAlt,
       label: `${heroTransformationCase.vehicle} after`,
+      sizes: "(max-width: 1024px) 100vw, 50vw",
       gallery: heroTransformationCase.gallery?.map((image) => ({
         src: image.imageSrc,
         alt: image.imageAlt,
@@ -417,19 +415,52 @@ function HomePage() {
               <p className="text-lg font-semibold uppercase tracking-[0.1em] text-slate-200 sm:text-xl lg:text-2xl">
                 McCloud&apos;s Collision &amp; Customs
               </p>
-              <h1 className="mt-2 max-w-4xl font-['Space_Grotesk'] text-4xl font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-5xl lg:text-[5.2rem]">
-                Collision Repair &amp; Custom Paint Done Right in{" "}
-                <a
-                  href={mapsHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline decoration-lime-100/30 underline-offset-4 transition hover:decoration-lime-100/70"
-                >
-                  Cookeville, TN
-                </a>
-              </h1>
-              <p className="mt-4 font-['Space_Grotesk'] text-2xl font-semibold text-lime-100 sm:text-3xl">
-                Precision Repairs. Flawless Paint. Results That Last.
+              <div className="mt-2">
+                <h1 className="max-w-4xl font-['Space_Grotesk'] text-[2.4rem] font-semibold leading-[0.94] tracking-[-0.03em] text-white sm:text-5xl lg:text-[5.2rem]">
+                  Collision Repair &amp; Custom Paint in{" "}
+                  <a
+                    href={mapsHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline decoration-lime-100/30 underline-offset-4 transition hover:decoration-lime-100/70"
+                  >
+                    Cookeville, TN
+                  </a>
+                  . Done Right the First Time.
+                </h1>
+              </div>
+              <div
+                className="pointer-events-none absolute right-[-7rem] top-0 hidden h-[22rem] w-[40rem] overflow-hidden rounded-[30%] opacity-95 xl:block"
+                aria-hidden="true"
+              >
+                <Image
+                  src={shopTheme.imageSrc}
+                  alt=""
+                  fill
+                  sizes="40rem"
+                  priority
+                  className="object-contain"
+                />
+              </div>
+              <div
+                className="pointer-events-none relative mt-3 h-24 w-56 overflow-hidden rounded-[30%] opacity-95 sm:mt-4 sm:h-28 sm:w-64 lg:hidden"
+                aria-hidden="true"
+              >
+                <Image
+                  src={shopTheme.imageSrc}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 14rem, 16rem"
+                  priority
+                  className="object-contain"
+                />
+              </div>
+              <p className="mt-4 max-w-3xl font-['Space_Grotesk'] text-lg font-semibold text-lime-100 sm:text-3xl">
+                Insurance help, clean body lines, and 35+ years of real shop
+                experience.
+              </p>
+              <p className="mt-3 text-sm font-semibold uppercase tracking-[0.2em] text-white/80 sm:text-base">
+                No runaround. No guesswork. Just clean, honest work done right.
               </p>
               <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-300">
                 Serving{" "}
@@ -443,9 +474,11 @@ function HomePage() {
                 </a>
               </p>
               <p className="mt-2 text-sm leading-7 text-slate-200">
-                Free estimates. Insurance claims welcome. Locally owned in
-                Cookeville with 35+ years of hands-on collision repair, custom
-                paint, restoration work, and bike and truck builds.
+                Free estimates, insurance claim support, and repair work that
+                does not leave you chasing people for answers. McCloud&apos;s
+                handles collision damage, paint match, restoration work, and
+                custom projects with the kind of fit and finish customers want
+                back on the road.
               </p>
               <div className="mt-5 flex flex-wrap gap-3 text-sm">
                 <a
@@ -470,11 +503,11 @@ function HomePage() {
             <div className="pt-2 sm:pt-9">
               <a
                 href="tel:9313193933"
-                className="inline-flex items-center justify-center self-start rounded-full border border-lime-300/45 bg-lime-300/18 px-6 py-4 text-sm font-semibold text-lime-50 shadow-[0_16px_34px_rgba(132,204,22,0.2)] transition duration-300 hover:-translate-y-0.5 hover:border-lime-200 hover:bg-lime-300/24 hover:shadow-[0_22px_44px_rgba(132,204,22,0.28)] sm:self-auto"
+                className="inline-flex items-center justify-center self-start rounded-full border border-lime-300/45 bg-lime-300/18 px-6 py-4 text-center text-sm font-semibold text-lime-50 shadow-[0_16px_34px_rgba(132,204,22,0.2)] transition duration-300 hover:-translate-y-0.5 hover:border-lime-200 hover:bg-lime-300/24 hover:shadow-[0_22px_44px_rgba(132,204,22,0.28)] sm:self-auto"
               >
-                Call now: (931) 319-3933
+                Call Now for a Free Estimate | Get an Answer Today
               </a>
-              <p className="mt-3 text-xs font-medium text-slate-300">
+              <p className="mt-3 text-center text-xs font-medium text-slate-300 sm:self-center">
                 Free estimates. Insurance claims welcome.
               </p>
             </div>
@@ -482,18 +515,6 @@ function HomePage() {
 
           <div className="grid flex-1 items-start gap-14 py-14 lg:grid-cols-[1fr_1.02fr] lg:py-20">
             <div>
-              <div className="relative mb-7 w-full max-w-[34rem]">
-                <div className="absolute inset-0 rounded-[2.25rem] bg-[radial-gradient(circle_at_18%_18%,rgba(163,230,53,0.18),transparent_26%),radial-gradient(circle_at_78%_28%,rgba(255,255,255,0.09),transparent_30%),linear-gradient(135deg,rgba(15,23,42,0.84),rgba(2,6,23,0.62))]" />
-                <InteractiveImage
-                  image={previewThemeImage}
-                  wrapperClassName="rounded-[2.25rem] border border-lime-300/16 bg-transparent px-4 py-4 shadow-[0_30px_90px_rgba(2,6,23,0.42)] sm:px-7 sm:py-6"
-                  imageClassName="relative mx-auto h-32 w-full object-contain sm:h-40 lg:h-48"
-                  overlayLabel="Open logo artwork"
-                  onPreviewStart={handlePreviewStart}
-                  onPreviewEnd={handlePreviewEnd}
-                  onOpen={handleOpenImage}
-                />
-              </div>
               <a
                 href={mapsHref}
                 target="_blank"
@@ -560,16 +581,16 @@ function HomePage() {
                   {activeHeroService.description}
                 </p>
               </div>
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
                   href="tel:9313193933"
-                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full bg-white px-6 py-4 text-center text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
                 >
                   Call Now for a Free Estimate
                 </a>
                 <a
                   href="mailto:Mccloudscollision@yahoo.com?subject=Shop%20Inquiry"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-4 text-sm font-semibold text-slate-100 transition hover:border-white/30 hover:bg-white/5"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 px-6 py-4 text-center text-sm font-semibold text-slate-100 transition hover:border-white/30 hover:bg-white/5"
                 >
                   Get a Quote Today
                 </a>
@@ -577,13 +598,13 @@ function HomePage() {
                   href={facebookHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/6 px-6 py-4 text-sm font-semibold text-white transition hover:border-lime-300/30 hover:bg-white/10"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full border border-white/15 bg-white/6 px-6 py-4 text-center text-sm font-semibold text-white transition hover:border-lime-300/30 hover:bg-white/10"
                 >
                   Facebook
                 </a>
                 <a
                   href="tel:9313193933"
-                  className="inline-flex items-center justify-center rounded-full border border-lime-300/25 bg-lime-300/10 px-6 py-4 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15"
+                  className="inline-flex min-h-14 items-center justify-center rounded-full border border-lime-300/25 bg-lime-300/10 px-6 py-4 text-center text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15"
                 >
                   Call the shop now: (931) 319-3933
                 </a>
