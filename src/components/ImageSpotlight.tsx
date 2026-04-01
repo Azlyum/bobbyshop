@@ -59,6 +59,9 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
   }
 
   const activeDisplayImage = gallery.find((item) => item.src === galleryPreviewSrc) ?? image;
+  const activeDescription = activeDisplayImage.alt
+    ? `${activeDisplayImage.alt} from McCloud's Collision & Customs in Cookeville, TN.`
+    : 'Finished work from McCloud\'s Collision & Customs in Cookeville, TN.';
 
   return (
     <div
@@ -92,6 +95,7 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
             <div className="flex min-h-[18rem] flex-col border-t border-white/10 bg-black/30 p-5 pb-6 lg:border-l lg:border-t-0 lg:p-6">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-lime-100/80">{pinned ? 'Full view' : 'Hover preview'}</p>
               <p className="mt-4 min-h-[3.5rem] text-sm leading-7 text-slate-200">{activeDisplayImage.label ?? activeDisplayImage.alt}</p>
+              <p className="mt-2 text-sm leading-7 text-slate-400">{activeDescription}</p>
               {gallery.length > 1 ? (
                 <div
                   className="mt-6 grid grid-cols-2 gap-3"

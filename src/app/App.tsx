@@ -338,6 +338,14 @@ function App() {
           </div>
           <div className="hidden items-center gap-3 md:flex">
             <a
+              href={mapsHref}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-lime-300/25 bg-lime-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15"
+            >
+              Location
+            </a>
+            <a
               href="#services"
               className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 transition hover:border-white/25 hover:bg-white/5"
             >
@@ -409,7 +417,7 @@ function App() {
                 McCloud&apos;s Collision &amp; Customs
               </p>
               <h1 className="mt-2 max-w-4xl font-['Space_Grotesk'] text-4xl font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-5xl lg:text-[5.2rem]">
-                Collision Repair &amp; Custom Paint in{" "}
+                Collision Repair &amp; Custom Paint Done Right in{" "}
                 <a
                   href={mapsHref}
                   target="_blank"
@@ -420,7 +428,7 @@ function App() {
                 </a>
               </h1>
               <p className="mt-4 font-['Space_Grotesk'] text-2xl font-semibold text-lime-100 sm:text-3xl">
-                Real repair work. Clean custom paint.
+                We Fix It. We Paint It. We Make It Better.
               </p>
               <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-300">
                 Serving{" "}
@@ -438,6 +446,25 @@ function App() {
                 Cookeville with 35+ years of hands-on collision repair, custom
                 paint, restoration work, and bike and truck builds.
               </p>
+              <div className="mt-5 flex flex-wrap gap-3 text-sm">
+                <a
+                  href={mapsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-white/12 bg-white/5 px-4 py-2 font-medium text-slate-100 transition hover:border-lime-300/25 hover:bg-white/8"
+                >
+                  Cookeville, TN
+                </a>
+                <a
+                  href="tel:9313193933"
+                  className="rounded-full border border-lime-300/25 bg-lime-300/10 px-4 py-2 font-medium text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15"
+                >
+                  Tap to call: (931) 319-3933
+                </a>
+                <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2 font-medium text-slate-100">
+                  Trusted local shop
+                </span>
+              </div>
             </div>
             <div className="pt-2 sm:pt-9">
               <a
@@ -594,7 +621,7 @@ function App() {
                       Featured transformation
                     </p>
                     <h2 className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold tracking-[-0.02em] text-white">
-                      Before and after work customers can read instantly.
+                      Damage in. Clean finish out.
                     </h2>
                     <p className="mt-4 text-sm leading-7 text-slate-200">
                       Real before-and-after repair work from McCloud&apos;s
@@ -655,10 +682,11 @@ function App() {
                         Featured job
                       </p>
                       <p className="mt-2 text-lg font-semibold text-white">
-                        {heroTransformationCase.vehicle}
+                        {heroTransformationCase.vehicle} |{" "}
+                        {heroTransformationCase.workType}
                       </p>
                       <p className="mt-1 text-sm text-slate-300">
-                        {heroTransformationCase.workType}
+                        {heroTransformationCase.highlight}
                       </p>
                     </div>
                     <button
