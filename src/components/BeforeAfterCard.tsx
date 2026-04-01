@@ -38,10 +38,8 @@ export function BeforeAfterCard({ item, onPreviewStart, onPreviewEnd, onOpen }: 
         <div>
           <p className="text-sm uppercase tracking-[0.32em] text-slate-400">{item.workType}</p>
           <h3 className="mt-4 font-['Space_Grotesk'] text-2xl font-semibold text-white">{item.vehicle}</h3>
+          <p className="mt-2 text-sm text-cyan-100">{item.highlight}</p>
         </div>
-        <span className="inline-flex items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-2 text-center text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100">
-          {item.highlight}
-        </span>
       </div>
 
       <div className="mt-8 grid gap-4">

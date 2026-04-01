@@ -3,6 +3,7 @@ export type ServiceHighlight = {
   title: string;
   description: string;
   points: string[];
+  pointsStyle?: 'bubbles' | 'text';
   imageSrc: string;
   imageAlt: string;
 };
@@ -71,7 +72,8 @@ export const serviceHighlights: ServiceHighlight[] = [
     kicker: 'Collision repair',
     title: 'Collision repair that puts it back together right',
     description: 'From bent front clips to side-hit damage, we handle the repair work, panel fit, and paint match without making the job feel like a production line.',
-    points: ['Insurance claims and estimate support', 'Panel repair, replacement, and fitment', 'Paint match, blend work, and cleanup'],
+    points: ['Insurance claims and estimate support.', 'Panel repair, replacement, and fitment.', 'Paint match, blend work, and cleanup.'],
+    pointsStyle: 'text',
     imageSrc: '/Images/pickup-red-white_after-rear-side.png',
     imageAlt: 'Custom painted McClouds pickup truck viewed from the rear side'
   },
@@ -80,14 +82,16 @@ export const serviceHighlights: ServiceHighlight[] = [
     title: 'Paint work from spot repair to full resprays',
     description: 'Need a repair blended in, a bike repainted, or a full custom color laid down? That is the kind of work this shop is known for.',
     points: ['Color match and blend repair', 'Full repaints and custom color', 'Graphics, polishing, and final detail'],
+    pointsStyle: 'text',
     imageSrc: '/Images/harley-white-graphics_after-side.png',
     imageAlt: 'Blue touring motorcycle with custom white graphics in a paint booth'
   },
   {
     kicker: 'Special fabrication',
     title: 'Custom pieces, restoration, and oddball work',
-    description: 'Old trucks, bike parts, fiberglass pieces, rust repair, and one-off custom ideas all get the same attention as the collision side of the shop.',
-    points: ['Rust repair and restoration work', 'Fiberglass and body mods', 'Sandblasting and specialty add-ons'],
+    description: 'Old trucks, bike parts, fiberglass pieces, rust repair, and one of a kind custom ideas all get the same attention as the collision side of the shop.',
+    points: ['Rust repair and restoration work.', 'Fiberglass and body mods.', 'Sandblasting and specialty add-ons.'],
+    pointsStyle: 'text',
     imageSrc: '/Images/harley-tank-blue-flames_after.png',
     imageAlt: 'Harley-Davidson fuel tank with blue flame-style custom paint'
   }
@@ -126,9 +130,9 @@ export const showcaseBuilds: ShowcaseBuild[] = [
   }
 ];
 
-export const heroGallery = [
+export const heroGallery: GalleryImage[] = [
   {
-    label: 'Brand Jeep wrap and finish',
+    label: 'Jeep finish',
     imageSrc: '/Images/jeep-rubicon-wrap_after-front-side.png',
     imageAlt: 'Branded Jeep Rubicon parked outside near a building and American flag'
   },
@@ -146,8 +150,253 @@ export const heroGallery = [
     label: 'Airbrushed tank detail',
     imageSrc: '/Images/harley-tank-flames_after.png',
     imageAlt: 'Harley-Davidson fuel tank with orange flame custom paint'
+  },
+  {
+    label: 'Checker bike finish',
+    imageSrc: '/Images/harley-checker_after-front-side.png',
+    imageAlt: 'Blue Harley-Davidson touring bike with checker graphics finished outside the shop'
+  },
+  {
+    label: 'Green flame bike',
+    imageSrc: '/Images/harley-green-flames_after-side.png',
+    imageAlt: 'Green Harley-Davidson with custom flames after paint'
+  },
+  {
+    label: 'Flame saddlebags',
+    imageSrc: '/Images/harley-saddlebags-flames_after.png',
+    imageAlt: 'Custom saddlebags with flame graphics after paint'
+  },
+  {
+    label: 'Blue flame tank',
+    imageSrc: '/Images/harley-tank-blue-flames_after.png',
+    imageAlt: 'Motorcycle tank with blue flames after custom paint'
+  },
+  {
+    label: 'White graphic bike',
+    imageSrc: '/Images/harley-white-graphics_after-side.png',
+    imageAlt: 'Touring motorcycle with white graphics after paint'
+  },
+  {
+    label: 'Orange Jeep build',
+    imageSrc: '/Images/jeep-orange_after-front-side.png',
+    imageAlt: 'Orange Jeep after custom body and paint work'
+  },
+  {
+    label: 'Pink Jeep finish',
+    imageSrc: '/Images/jeep-pink_after-side.png',
+    imageAlt: 'Pink Jeep after custom paint work'
+  },
+  {
+    label: 'Red and white pickup',
+    imageSrc: '/Images/pickup-red-white_after-rear-side.png',
+    imageAlt: 'Red and white pickup after paint and finish work'
+  },
+  {
+    label: 'White door truck',
+    imageSrc: '/Images/pickup-white-doors_after-front.png',
+    imageAlt: 'White custom truck with vertical doors after bodywork'
+  },
+  {
+    label: 'Blue Mustang',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_01_blue_mustang_after_work_01.jpg',
+    imageAlt: 'Blue Mustang finished product view'
+  },
+  {
+    label: 'Semi truck finish',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_02_semi_truck_after_work_02.jpg',
+    imageAlt: 'Semi truck after repair and paint'
+  },
+  {
+    label: 'Red classic pickup',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_03_red_classic_pickup_after_work_01.jpg',
+    imageAlt: 'Red classic pickup finished outdoors'
+  },
+  {
+    label: 'Red classic truck front',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_03_red_classic_truck_after_work_02.jpg',
+    imageAlt: 'Red classic truck finished front view'
+  },
+  {
+    label: 'Red classic truck angle',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_03_red_classic_truck_after_work_03.jpg',
+    imageAlt: 'Red classic truck finished angle view'
+  },
+  {
+    label: 'Red classic truck side',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_03_red_classic_truck_after_work_04.jpg',
+    imageAlt: 'Red classic truck finished side view'
+  },
+  {
+    label: 'Red classic truck detail',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_03_red_classic_truck_after_work_05.jpg',
+    imageAlt: 'Red classic truck finished detail view'
+  },
+  {
+    label: 'Red classic truck hood',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_03_red_classic_truck_after_work_06.jpg',
+    imageAlt: 'Red classic truck finished hood view'
+  },
+  {
+    label: 'General Lee front',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_04_general_lee_after_work_01.jpg',
+    imageAlt: 'General Lee style car finished front view'
+  },
+  {
+    label: 'General Lee side',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_04_general_lee_after_work_02.jpg',
+    imageAlt: 'General Lee style car finished side view'
+  },
+  {
+    label: 'General Lee angle',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_04_general_lee_after_work_03.jpg',
+    imageAlt: 'General Lee style car finished angle view'
+  },
+  {
+    label: 'General Lee rear',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_04_general_lee_after_work_04.jpg',
+    imageAlt: 'General Lee style car finished rear view'
+  },
+  {
+    label: 'General Lee detail',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_04_general_lee_after_work_05.jpg',
+    imageAlt: 'General Lee style car finished detail view'
+  },
+  {
+    label: 'Red compact pickup',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_06_red_classic_pickup_after_work_02.jpg',
+    imageAlt: 'Red compact pickup after bodywork and paint'
+  },
+  {
+    label: 'Red compact truck shop',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_06_red_classic_truck_after_work_04.jpg',
+    imageAlt: 'Red compact truck finished inside the shop'
+  },
+  {
+    label: 'Black dump truck',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_07_black_dump_truck_after_work_01.jpg',
+    imageAlt: 'Black dump truck after repair and refinish'
+  },
+  {
+    label: 'Blue muscle car',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_08_blue_classic_muscle_car_after_work_01.jpg',
+    imageAlt: 'Blue classic muscle car finished product'
+  },
+  {
+    label: 'White Challenger',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_09_white_dodge_challenger_after_work_01.jpg',
+    imageAlt: 'White Dodge Challenger finished product'
+  },
+  {
+    label: 'Lifted truck front',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_12_lifted_truck_after_work_01.jpg',
+    imageAlt: 'Lifted truck finished front view'
+  },
+  {
+    label: 'Lifted truck rear',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_12_lifted_truck_after_work_02.jpg',
+    imageAlt: 'Lifted truck finished rear view'
+  },
+  {
+    label: 'White compact truck',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_13_white_compact_truck_after_work_01.jpg',
+    imageAlt: 'White compact truck finished product'
+  },
+  {
+    label: 'Black vintage car',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_14_black_vintage_car_after_work_01.jpg',
+    imageAlt: 'Black vintage car finished product'
+  },
+  {
+    label: 'Silver sedan',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_15_silver_sedan_after_work_01.jpg',
+    imageAlt: 'Silver sedan finished product'
+  },
+  {
+    label: 'Silver pickup front',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_16_silver_pickup_bodywork_after_work_01.jpg',
+    imageAlt: 'Silver pickup after bodywork front view'
+  },
+  {
+    label: 'Silver pickup side',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_16_silver_pickup_bodywork_after_work_02.jpg',
+    imageAlt: 'Silver pickup after bodywork side view'
+  },
+  {
+    label: 'Brown classic car',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_17_brown_classic_car_after_work_01.jpg',
+    imageAlt: 'Brown classic car finished product'
+  },
+  {
+    label: 'Orange white truck',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_18_orange_white_classic_truck_after_work_01.jpg',
+    imageAlt: 'Orange and white classic truck finished product'
+  },
+  {
+    label: 'Red truck bed',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_19_red_truck_bed_after_work_01.jpg',
+    imageAlt: 'Red truck bed after finish work'
+  },
+  {
+    label: 'Green fairing one',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_20_green_fairing_after_work_01.jpg',
+    imageAlt: 'Green motorcycle fairing finished view one'
+  },
+  {
+    label: 'Green fairing two',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_20_green_fairing_after_work_02.jpg',
+    imageAlt: 'Green motorcycle fairing finished view two'
+  },
+  {
+    label: 'Green fairing three',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_20_green_fairing_after_work_03.jpg',
+    imageAlt: 'Green motorcycle fairing finished view three'
+  },
+  {
+    label: 'Red classic truck build',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_22_red_classic_truck_after_work_01.jpg',
+    imageAlt: 'Red classic truck finished product'
+  },
+  {
+    label: 'Orange motorcycle side',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_24_orange_motorcycle_restoration_after_work_01.jpg',
+    imageAlt: 'Orange motorcycle finished side view'
+  },
+  {
+    label: 'Orange motorcycle detail',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_24_orange_motorcycle_restoration_after_work_02.jpg',
+    imageAlt: 'Orange motorcycle finished detail view'
+  },
+  {
+    label: 'Shop collection',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_26_shop_vehicle_collection_after_work_01.jpg',
+    imageAlt: 'Finished shop vehicle collection'
+  },
+  {
+    label: 'Maroon touring bike',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_30_maroon_touring_motorcycle_after_work_01.jpg',
+    imageAlt: 'Maroon touring motorcycle finished product'
+  },
+  {
+    label: 'Maroon touring detail',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_30_maroon_touring_motorcycle_after_work_02.jpg',
+    imageAlt: 'Maroon touring motorcycle finished detail'
+  },
+  {
+    label: 'Red classic car one',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_31_red_classic_car_after_work_01.jpg',
+    imageAlt: 'Red classic car finished view one'
+  },
+  {
+    label: 'Red classic car two',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_31_red_classic_car_after_work_02.jpg',
+    imageAlt: 'Red classic car finished view two'
+  },
+  {
+    label: 'Green Mustang',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_32_green_mustang_after_work_01.jpg',
+    imageAlt: 'Green Mustang finished product'
   }
-] as const satisfies readonly GalleryImage[];
+];
 
 export const bookingServices = [
   'Collision estimate',

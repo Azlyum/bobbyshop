@@ -2,3 +2,4 @@
 User-agent: *
 Disallow:
 Allow: /
+Sitemap: https://www.mccloudscollision.com/sitemap.xml

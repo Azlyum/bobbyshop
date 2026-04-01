@@ -1,70 +1,125 @@
-# Getting Started with Create React App
+# McCloud's Collision and Customs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend marketing site for McCloud's Collision and Customs in Cookeville, Tennessee.
+
+Production URL: `https://www.mccloudscollision.com`
+
+## Overview
+
+This project is a React + TypeScript single-page site for a local collision and custom paint shop. It is focused on:
+
+- presenting shop services and finished work
+- driving direct contact by phone, email, Facebook, and maps
+- supporting basic local SEO and social sharing metadata
+
+The site is currently static on the frontend. Backend-driven booking is intentionally disabled.
+
+## Tech Stack
+
+- React
+- TypeScript
+- Create React App
+- Tailwind CSS
+
+## Project Structure
+
+- `src/app/App.tsx`
+  Main page composition and top-level interaction state.
+- `src/components/`
+  Reusable UI components such as cards, spotlight, gallery modal, FAQ, and contact panel.
+- `src/data/siteContent.ts`
+  Primary content source for services, gallery items, before/after cases, and FAQ content.
+- `public/`
+  Static assets, metadata files, favicon, sitemap, and robots directives.
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm start
+```
+
+Default local URL:
+
+```text
+http://localhost:3000
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+Run the test suite:
 
-### `npm start`
+```bash
+npm test
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Create a production build:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm run build
+```
 
-### `npm test`
+## Current Feature Set
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- responsive landing page for desktop, tablet, and mobile
+- hero section with direct contact actions
+- specialties and shop standards sections
+- before/after case studies
+- finished-work gallery modal
+- image spotlight viewer for enlarged asset previews
+- clickable phone, maps, email, and Facebook actions
+- custom favicon aligned to site branding
 
-### `npm run build`
+## Content Model
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Most editable marketing content lives in:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [src/data/siteContent.ts](src/data/siteContent.ts)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+That file drives:
 
-### `npm run eject`
+- specialties cards
+- standards/project cards
+- before/after entries
+- gallery items
+- FAQ entries
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## SEO Implementation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The codebase currently includes the main frontend SEO foundations:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- canonical tag
+- `robots.txt`
+- `sitemap.xml`
+- Open Graph metadata
+- Twitter card metadata
+- local business structured data
+- FAQ structured data
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Relevant files:
 
-## Learn More
+- [public/index.html](public/index.html)
+- [public/robots.txt](public/robots.txt)
+- [public/sitemap.xml](public/sitemap.xml)
+- [public/manifest.json](public/manifest.json)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Deployment Notes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `package.json` is configured with the production homepage:
+  `https://www.mccloudscollision.com`
+- production assets are generated in `build/`
+- after deploy, verify indexing and sitemap submission in Google Search Console:
+  `https://www.mccloudscollision.com/sitemap.xml`
 
-### Code Splitting
+## Known Constraints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- booking is not connected to a backend and is currently disabled in the UI
+- the gallery and shop content are maintained manually through local data files
+- SEO setup in the repo is complete on the frontend side, but Search Console, Business Profile, citations, and review strategy remain operational concerns outside this codebase

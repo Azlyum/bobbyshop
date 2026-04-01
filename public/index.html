@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
+    <link rel="alternate icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#050816" />
+    <meta name="application-name" content="McCloud's Collision and Customs" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta
       name="description"
-      content="McCloud's Collision and Customs in Cookeville, Tennessee provides collision repair, custom paint, bodywork, refinishing, and direct contact for estimates and shop inquiries."
+      content="McCloud's Collision and Customs in Cookeville, Tennessee provides collision repair, custom paint, bodywork, refinishing, in-house paint mixing, and direct contact for estimates and shop inquiries."
     />
     <meta name="author" content="McCloud's Collision and Customs" />
     <meta name="format-detection" content="telephone=yes,address=yes,email=yes" />
@@ -20,14 +23,17 @@
     />
     <meta property="og:site_name" content="McCloud's Collision and Customs" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:image" content="%PUBLIC_URL%/Images/mcclouds-brand_after-logo.png" />
+    <meta property="og:url" content="https://www.mccloudscollision.com/" />
+    <meta property="og:image" content="https://www.mccloudscollision.com/Images/mcclouds-brand_after-logo.png" />
+    <meta property="og:image:alt" content="McCloud's Collision and Customs shop logo" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="McCloud's Collision and Customs | Cookeville, TN" />
     <meta
       name="twitter:description"
       content="Collision repair, custom paint, bodywork, and refinishing in Cookeville, Tennessee."
     />
-    <meta name="twitter:image" content="%PUBLIC_URL%/Images/mcclouds-brand_after-logo.png" />
+    <meta name="twitter:image" content="https://www.mccloudscollision.com/Images/mcclouds-brand_after-logo.png" />
+    <link rel="canonical" href="https://www.mccloudscollision.com/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -37,27 +43,81 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "AutoBodyShop",
-        "name": "McCloud's Collision and Customs",
-        "image": "%PUBLIC_URL%/Images/mcclouds-brand_after-logo.png",
-        "telephone": "+1-931-319-3933",
-        "email": "mccloudscollisioncustom@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "1309 W Broad St",
-          "addressLocality": "Cookeville",
-          "addressRegion": "TN",
-          "postalCode": "38501",
-          "addressCountry": "US"
-        },
-        "areaServed": "Cookeville, Tennessee",
-        "priceRange": "$$",
-        "description": "Collision repair, custom paint, bodywork, refinishing, restoration work, and custom vehicle builds."
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "McCloud's Collision and Customs",
+            "url": "https://www.mccloudscollision.com/"
+          },
+          {
+            "@type": "AutoBodyShop",
+            "name": "McCloud's Collision and Customs",
+            "image": "https://www.mccloudscollision.com/Images/mcclouds-brand_after-logo.png",
+            "url": "https://www.mccloudscollision.com/",
+            "telephone": "+1-931-319-3933",
+            "email": "Mccloudscollision@yahoo.com",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "1309 W Broad St",
+              "addressLocality": "Cookeville",
+              "addressRegion": "TN",
+              "postalCode": "38501",
+              "addressCountry": "US"
+            },
+            "areaServed": "Cookeville, Tennessee",
+            "priceRange": "$$",
+            "sameAs": [
+              "https://www.facebook.com/profile.php?id=61555435137428&__tn__=%2Cd"
+            ],
+            "hasMap": "https://www.google.com/maps/dir/?api=1&destination=1309+W+Broad+St,+Cookeville,+TN+38501",
+            "description": "Collision repair, custom paint, bodywork, refinishing, restoration work, and custom vehicle builds."
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What kind of vehicles do you work on?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Mostly trucks, cars, and bikes, plus the occasional custom project that does not fit neatly in a box."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you handle insurance work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. If the job is going through insurance, the shop can work through that side of it with you."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I book paint or fabrication work even if it is not collision related?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Paint, graphics, fabrication, restoration, fiberglass work, and similar custom jobs can all be booked without collision damage being involved."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How should I contact the shop first?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Call if you want the fastest answer. If email is easier, send photos and a short note about what you need done."
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      McCloud's Collision and Customs in Cookeville, Tennessee offers collision repair, custom paint, bodywork, refinishing, and in-house paint matching.
+      Call (931) 319-3933 or email Mccloudscollision@yahoo.com.
+    </noscript>
     <div id="root"></div>
   </body>
 </html>

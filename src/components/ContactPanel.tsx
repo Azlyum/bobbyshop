@@ -11,7 +11,7 @@ export function ContactPanel() {
   const mailtoHref = useMemo(() => {
     const subject = `${projectType} inquiry`;
     const body = `Name: ${senderName || "TBD"}\nProject: ${projectType}\n\nI want to discuss scope, pricing, and next available appointment.`;
-    return `mailto:mccloudscollisioncustom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return `mailto:Mccloudscollision@yahoo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }, [projectType, senderName]);
 
   return (
@@ -81,14 +81,17 @@ export function ContactPanel() {
       </a>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4">
+        <a
+          href="tel:9313193933"
+          className="rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4 transition hover:border-white/25 hover:bg-slate-950/60"
+        >
           <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
             Phone
           </p>
           <p className="mt-3 text-lg font-semibold text-white">
             (931) 319-3933
           </p>
-        </div>
+        </a>
         <a
           href={mapsHref}
           target="_blank"

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { BeforeAfterCard } from "../components/BeforeAfterCard";
 import { ContactPanel } from "../components/ContactPanel";
 import { FaqList } from "../components/FaqList";
+import { GalleryModal } from "../components/GalleryModal";
 import { ImageSpotlight } from "../components/ImageSpotlight";
 import {
   InteractiveImage,
@@ -21,17 +22,52 @@ import {
 } from "../data/siteContent";
 
 function App() {
+  type HeroServiceLink = {
+    title: string;
+    description: string;
+  };
+
+  const heroServiceLinks = [
+    {
+      title: "Insurance repairs",
+      description:
+        "Estimate support, claim-related collision work, and repair planning that helps move insurance jobs through the shop cleanly.",
+    },
+    {
+      title: "Custom paint",
+      description:
+        "Full resprays, color matching, graphics, and one-of-a-kind paint work for cars, trucks, bikes, and specialty parts.",
+    },
+    {
+      title: "Restoration work",
+      description:
+        "Older vehicles and worn parts get body correction, prep, refinishing, and detail work to bring them back the right way.",
+    },
+    {
+      title: "Bike and truck builds",
+      description:
+        "From motorcycles to custom truck projects, the shop handles fabrication-minded work that needs fit, finish, and hand-built attention.",
+    },
+  ] satisfies readonly HeroServiceLink[];
+
   const [hoveredImage, setHoveredImage] = useState<SpotlightImage | null>(null);
   const [pinnedImage, setPinnedImage] = useState<SpotlightImage | null>(null);
+  const [galleryOpen, setGalleryOpen] = useState(false);
   const [beforeAfterStartIndex, setBeforeAfterStartIndex] = useState(0);
+  const [activeHeroService, setActiveHeroService] = useState<HeroServiceLink>(
+    heroServiceLinks[0],
+  );
   const previewStartTimeoutRef = useRef<number | null>(null);
   const previewEndTimeoutRef = useRef<number | null>(null);
+  const previewHistoryActiveRef = useRef(false);
+  const suppressPreviewPopCloseRef = useRef(false);
   const facebookHref =
     "https://www.facebook.com/profile.php?id=61555435137428&__tn__=%2Cd";
   const mapsHref =
     "https://www.google.com/maps/dir/?api=1&destination=1309+W+Broad+St,+Cookeville,+TN+38501";
 
   const activeImage = pinnedImage ?? hoveredImage;
+  const galleryPreviewImages = useMemo(() => heroGallery.slice(0, 4), []);
   const visibleBeforeAfterCases = useMemo(() => {
     const visibleCount = Math.min(3, beforeAfterCases.length);
 
@@ -98,13 +134,33 @@ function App() {
   };
 
   const handleOpenImage = (image: SpotlightImage) => {
+    if (!pinnedImage && !previewHistoryActiveRef.current) {
+      window.history.pushState({ imagePreview: true }, "");
+      previewHistoryActiveRef.current = true;
+    }
+
     setPinnedImage(image);
     setHoveredImage(null);
   };
 
   const handleCloseImage = () => {
+    if (previewHistoryActiveRef.current) {
+      suppressPreviewPopCloseRef.current = true;
+      previewHistoryActiveRef.current = false;
+      window.history.back();
+      return;
+    }
+
     setPinnedImage(null);
     setHoveredImage(null);
+  };
+
+  const handleOpenGallery = () => {
+    setGalleryOpen(true);
+  };
+
+  const handleCloseGallery = () => {
+    setGalleryOpen(false);
   };
 
   useEffect(
@@ -119,6 +175,27 @@ function App() {
     },
     [],
   );
+
+  useEffect(() => {
+    const handlePopState = () => {
+      if (suppressPreviewPopCloseRef.current) {
+        suppressPreviewPopCloseRef.current = false;
+        setPinnedImage(null);
+        setHoveredImage(null);
+        return;
+      }
+
+      if (previewHistoryActiveRef.current) {
+        previewHistoryActiveRef.current = false;
+        setPinnedImage(null);
+        setHoveredImage(null);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   useEffect(() => {
     if (beforeAfterCases.length <= 3) {
@@ -136,6 +213,12 @@ function App() {
 
   return (
     <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(163,230,53,0.12),transparent_24%),radial-gradient(circle_at_80%_12%,rgba(34,211,238,0.14),transparent_22%)]">
+      <GalleryModal
+        images={heroGallery}
+        open={galleryOpen}
+        onClose={handleCloseGallery}
+        onOpenImage={handleOpenImage}
+      />
       <ImageSpotlight
         image={activeImage}
         pinned={Boolean(pinnedImage)}
@@ -150,13 +233,14 @@ function App() {
           <header className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-[56rem]">
               <h1 className="mt-3 text-balance font-['Space_Grotesk'] text-2xl font-semibold uppercase tracking-[0.08em] text-slate-100 sm:whitespace-nowrap sm:text-3xl lg:text-[2.6rem]">
-                McCloud&apos;s Collision and Customs
+                McCloud&apos;s Collision & Customs
               </h1>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-400">
                 Cookeville, Tennessee
               </p>
               <p className="mt-2 text-sm text-slate-300">
-                Collision repair, custom paint, bodywork, refinishing
+                All your custom automotive painting needs. Cars, trucks, and
+                bikes. 35 years experience.
               </p>
             </div>
             <div className="pt-2 sm:pt-10">
@@ -198,21 +282,37 @@ function App() {
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
                 McCloud&apos;s works on collision repair, custom paint,
                 fabrication, bikes, trucks, and the kind of projects that need a
-                shop willing to slow down and get the details right.
+                shop willing to slow down and get the details right. One of the
+                few shops with a computer color scanner to match paint and mix
+                the paint in-house.
               </p>
               <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-300">
-                <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2">
-                  Insurance repairs
-                </span>
-                <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2">
-                  Custom paint
-                </span>
-                <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2">
-                  Restoration work
-                </span>
-                <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2">
-                  Bike and truck builds
-                </span>
+                {heroServiceLinks.map((item) => {
+                  const active = item.title === activeHeroService.title;
+
+                  return (
+                    <button
+                      key={item.title}
+                      type="button"
+                      onClick={() => setActiveHeroService(item)}
+                      className={`rounded-full border px-4 py-2 text-left transition ${
+                        active
+                          ? "border-lime-300/35 bg-lime-300/10 text-lime-50"
+                          : "border-white/12 bg-white/5 hover:border-white/25 hover:bg-white/8"
+                      }`}
+                    >
+                      {item.title}
+                    </button>
+                  );
+                })}
+              </div>
+              <div className="mt-4 max-w-2xl rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-lime-100/80">
+                  {activeHeroService.title}
+                </p>
+                <p className="mt-3 text-sm leading-7 text-slate-300">
+                  {activeHeroService.description}
+                </p>
               </div>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                 <a
@@ -222,7 +322,7 @@ function App() {
                   Schedule a consult
                 </a>
                 <a
-                  href="mailto:mccloudscollisioncustom@gmail.com?subject=Shop%20Inquiry"
+                  href="mailto:Mccloudscollision@yahoo.com?subject=Shop%20Inquiry"
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-4 text-sm font-semibold text-slate-100 transition hover:border-white/30 hover:bg-white/5"
                 >
                   Email the shop
@@ -263,39 +363,42 @@ function App() {
                   <div className="flex items-start justify-between gap-4">
                     <div className="max-w-sm">
                       <p className="text-sm uppercase tracking-[0.32em] text-slate-400">
-                        Recent work
+                        Gallery
                       </p>
                       <h2 className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold text-white">
-                        A few jobs that show the range of the shop.
+                        Finished work from the shop.
                       </h2>
+                      <p className="mt-4 text-sm leading-7 text-slate-300">
+                        Open the full gallery to browse the shop&apos;s finished
+                        after-work images in one place.
+                      </p>
                     </div>
-                    <span className="inline-flex items-center justify-center rounded-full border border-lime-300/25 bg-lime-300/10 px-4 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-lime-100">
-                      New work added
-                    </span>
                   </div>
                   <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                    {heroGallery.map((item) => (
+                    {galleryPreviewImages.map((item) => (
                       <figure
                         key={item.label}
-                        className="group overflow-hidden rounded-[1.9rem] border border-white/10 bg-slate-950/55"
+                        className="overflow-hidden rounded-[1.9rem] border border-white/10 bg-slate-950/55"
                       >
-                        <InteractiveImage
-                          image={{
-                            src: item.imageSrc,
-                            alt: item.imageAlt,
-                            label: item.label,
-                          }}
-                          wrapperClassName=""
-                          imageClassName="h-56 w-full object-cover transition duration-700 group-hover:scale-[1.05] sm:h-60"
-                          onPreviewStart={handlePreviewStart}
-                          onPreviewEnd={handlePreviewEnd}
-                          onOpen={handleOpenImage}
+                        <img
+                          src={item.imageSrc}
+                          alt={item.imageAlt}
+                          className="h-56 w-full object-cover sm:h-60"
                         />
                         <figcaption className="border-t border-white/10 px-4 py-4 text-sm font-medium text-slate-200">
                           {item.label}
                         </figcaption>
                       </figure>
                     ))}
+                  </div>
+                  <div className="mt-6">
+                    <button
+                      type="button"
+                      onClick={handleOpenGallery}
+                      className="inline-flex items-center justify-center rounded-full border border-lime-300/35 bg-lime-300/10 px-6 py-4 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15"
+                    >
+                      View Gallery
+                    </button>
                   </div>
                 </div>
               </div>
@@ -324,7 +427,7 @@ function App() {
                       >
                         <div className="flex items-start gap-4">
                           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-sm font-semibold text-slate-950">
-                            0{index + 1}
+                            {index + 1}
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold text-white">
