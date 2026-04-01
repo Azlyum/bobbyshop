@@ -15,6 +15,7 @@ export function BeforeAfterCard({ item, onPreviewStart, onPreviewEnd, onOpen }: 
       src: item.imageSrc,
       alt: item.imageAlt,
       label: item.vehicle,
+      sizes: '(max-width: 1024px) 100vw, 33vw',
       gallery: item.gallery?.map((image) => ({
         src: image.imageSrc,
         alt: image.imageAlt,

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import { SpotlightImage } from './InteractiveImage';
 
@@ -88,8 +89,15 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
           ) : null}
           <div className="grid gap-0 lg:min-h-[42rem] lg:grid-cols-[1fr_18rem]">
             <div className="bg-black/30 p-3 pt-16 sm:p-4 sm:pt-4">
-              <div className="flex h-[22rem] items-center justify-center rounded-[1.5rem] bg-black/30 sm:h-[28rem] lg:h-[38rem]">
-                <img src={activeDisplayImage.src} alt={activeDisplayImage.alt} className="h-full w-full rounded-[1.5rem] object-contain" />
+              <div className="relative flex h-[22rem] items-center justify-center rounded-[1.5rem] bg-black/30 sm:h-[28rem] lg:h-[38rem]">
+                <Image
+                  src={activeDisplayImage.src}
+                  alt={activeDisplayImage.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 72vw"
+                  priority
+                  className="rounded-[1.5rem] object-contain"
+                />
               </div>
             </div>
             <div className="flex min-h-[18rem] flex-col border-t border-white/10 bg-black/30 p-5 pb-6 lg:border-l lg:border-t-0 lg:p-6">
@@ -113,17 +121,20 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
                       <button
                         key={galleryImage.src}
                         type="button"
-                        className={`group overflow-hidden rounded-2xl border bg-slate-950/70 transition duration-200 ${isActive ? 'border-lime-300/50 shadow-[0_0_0_1px_rgba(190,242,100,0.26)]' : 'border-white/10 hover:border-white/25'}`}
+                        className={`group relative overflow-hidden rounded-2xl border bg-slate-950/70 transition duration-200 ${isActive ? 'border-lime-300/50 shadow-[0_0_0_1px_rgba(190,242,100,0.26)]' : 'border-white/10 hover:border-white/25'}`}
                         onMouseEnter={() => setGalleryPreviewSrc(galleryImage.src)}
                         onFocus={() => setGalleryPreviewSrc(galleryImage.src)}
                         onClick={() => setGalleryPreviewSrc(galleryImage.src)}
                         aria-label={`Preview ${galleryImage.label ?? galleryImage.alt}`}
                       >
-                        <img
+                        <Image
                           src={galleryImage.src}
                           alt={galleryImage.alt}
-                          className={`h-20 w-full object-cover transition duration-300 ${isActive ? 'scale-[1.12]' : 'group-hover:scale-110 group-focus-visible:scale-110'}`}
+                          fill
+                          sizes="(max-width: 1024px) 25vw, 12rem"
+                          className={`object-cover transition duration-300 ${isActive ? 'scale-[1.12]' : 'group-hover:scale-110 group-focus-visible:scale-110'}`}
                         />
+                        <span className="block h-20 w-full" aria-hidden="true" />
                       </button>
                     );
                   })}
