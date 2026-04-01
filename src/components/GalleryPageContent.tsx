@@ -48,16 +48,16 @@ export function GalleryPageContent() {
       />
 
       <section className="page-hero relative border-b border-white/10">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
           <div className="flex flex-col gap-8 xl:flex-row xl:items-end xl:justify-between">
             <div className="max-w-4xl">
-              <p className="text-sm uppercase tracking-[0.32em] text-lime-100/80">
+              <p className="text-[0.78rem] uppercase tracking-[0.26em] text-lime-100/80 sm:text-sm sm:tracking-[0.32em]">
                 Gallery
               </p>
-              <h1 className="mt-5 font-['Space_Grotesk'] text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+              <h1 className="mt-6 font-['Space_Grotesk'] text-[2.45rem] font-semibold leading-[1.06] text-white sm:mt-5 sm:text-5xl lg:text-6xl">
                 Before-and-after work and finished builds from the shop.
               </h1>
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+              <p className="mt-6 max-w-3xl text-[1.06rem] leading-8 text-slate-300 sm:mt-5 sm:text-lg">
                 Browse repair work, custom finishes, and project photos in one
                 place.
               </p>
@@ -80,7 +80,7 @@ export function GalleryPageContent() {
             title="Real projects from the shop"
             description="Repairs, restorations, and paint jobs with clear starting points and finished outcomes."
           />
-          <div className="mt-12 grid gap-6 xl:grid-cols-3">
+          <div className="mt-14 grid gap-7 xl:grid-cols-3">
             {beforeAfterCases.map((item) => (
               <BeforeAfterCard
                 key={item.vehicle}

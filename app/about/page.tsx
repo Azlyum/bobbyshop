@@ -32,16 +32,16 @@ export default function AboutPage() {
   return (
     <SiteShell>
       <section className="page-hero relative border-b border-white/10">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
           <div className="max-w-4xl">
-            <p className="text-sm uppercase tracking-[0.32em] text-lime-100/80">
+            <p className="text-[0.78rem] uppercase tracking-[0.26em] text-lime-100/80 sm:text-sm sm:tracking-[0.32em]">
               About
             </p>
-            <h1 className="mt-5 font-['Space_Grotesk'] text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 font-['Space_Grotesk'] text-[2.45rem] font-semibold leading-[1.06] text-white sm:mt-5 sm:text-5xl lg:text-6xl">
               Decades of shop experience, straightforward communication, and
               work built to leave right.
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+            <p className="mt-6 max-w-3xl text-[1.06rem] leading-8 text-slate-300 sm:mt-5 sm:text-lg">
               McCloud&apos;s Collision & Customs is based in Cookeville and
               serves customers across Putnam County and surrounding areas with
               collision repair, refinishing, restoration work, and custom
@@ -144,7 +144,7 @@ export default function AboutPage() {
             title="Simple process, clear expectations"
             description="Customers usually want to know what happens after the first call or estimate."
           />
-          <div className="mt-12 grid gap-4 xl:grid-cols-3">
+          <div className="mt-14 grid gap-5 xl:grid-cols-3">
             {processSteps.map((step, index) => (
               <div key={step.title} className="panel rounded-[1.8rem] p-6">
                 <p className="text-sm font-semibold text-lime-100">

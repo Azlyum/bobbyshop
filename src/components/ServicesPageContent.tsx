@@ -20,15 +20,15 @@ export function ServicesPageContent() {
       />
 
       <section className="page-hero relative border-b border-white/10">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
           <div className="max-w-4xl">
-            <p className="text-sm uppercase tracking-[0.32em] text-lime-100/80">
+            <p className="text-[0.78rem] uppercase tracking-[0.26em] text-lime-100/80 sm:text-sm sm:tracking-[0.32em]">
               Services
             </p>
-            <h1 className="mt-5 font-['Space_Grotesk'] text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 font-['Space_Grotesk'] text-[2.45rem] font-semibold leading-[1.06] text-white sm:mt-5 sm:text-5xl lg:text-6xl">
               Collision repair, paint, and custom work built around clean finish.
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+            <p className="mt-6 max-w-3xl text-[1.06rem] leading-8 text-slate-300 sm:mt-5 sm:text-lg">
               The shop&apos;s core work includes collision repair, paint and
               refinish, and custom fabrication-minded jobs that need careful fit
               and finish.
@@ -38,13 +38,13 @@ export function ServicesPageContent() {
       </section>
 
       <section className="section-atmosphere section-atmosphere-lime relative">
-        <div className="mx-auto w-full max-w-7xl px-6 pt-14 pb-24 lg:px-8 lg:pt-20">
+        <div className="mx-auto w-full max-w-7xl px-6 pt-18 pb-24 lg:px-8 lg:pt-20">
           <SectionHeading
             eyebrow="Specialties"
             title="Core service lines"
             description="The main work the shop handles most often."
           />
-          <div className="mt-12 grid gap-6 xl:grid-cols-3">
+          <div className="mt-14 grid gap-7 xl:grid-cols-3">
             {serviceHighlights.map((service) => (
               <ServiceCard
                 key={service.title}
@@ -65,7 +65,7 @@ export function ServicesPageContent() {
             title="Recent examples of the shop&apos;s finish standards"
             description="A quick look at repair and custom jobs that show the kind of result the shop aims to deliver."
           />
-          <div className="mt-12 grid gap-6 xl:grid-cols-3">
+          <div className="mt-14 grid gap-7 xl:grid-cols-3">
             {showcaseBuilds.map((build) => (
               <ShowcaseCard
                 key={build.name}

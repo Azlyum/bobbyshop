@@ -44,15 +44,15 @@ export default function InsurancePage() {
   return (
     <SiteShell>
       <section className="page-hero relative border-b border-white/10">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
+        <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-8 lg:py-24">
           <div className="max-w-4xl">
-            <p className="text-sm uppercase tracking-[0.32em] text-lime-100/80">
+            <p className="text-[0.78rem] uppercase tracking-[0.26em] text-lime-100/80 sm:text-sm sm:tracking-[0.32em]">
               Insurance
             </p>
-            <h1 className="mt-5 font-['Space_Grotesk'] text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 font-['Space_Grotesk'] text-[2.45rem] font-semibold leading-[1.06] text-white sm:mt-5 sm:text-5xl lg:text-6xl">
               Insurance-related repair help without the usual runaround.
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-300">
+            <p className="mt-6 max-w-3xl text-[1.06rem] leading-8 text-slate-300 sm:mt-5 sm:text-lg">
               If your vehicle is part of an insurance claim, the shop can help
               you through the estimate and repair conversation while keeping the
               work itself moving in the right direction.
@@ -126,7 +126,7 @@ export default function InsurancePage() {
             title="How to find the shop and what to bring"
             description="Most people are trying to solve the same problems quickly after an accident or damage estimate."
           />
-          <div className="mt-12 grid gap-6 xl:grid-cols-3">
+          <div className="mt-14 grid gap-7 xl:grid-cols-3">
             {customerSteps.map((item) => (
               <div key={item.title} className="panel rounded-[1.8rem] p-6">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-slate-400">
