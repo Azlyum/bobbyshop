@@ -50,7 +50,7 @@ export function ContactPanel() {
 
       <a
         href="tel:9313193933"
-        className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-4 text-sm font-semibold text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-300/15"
+        className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-lime-300/35 bg-lime-300/12 px-5 py-4 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/18"
       >
         Call now for a free estimate: (931) 319-3933
       </a>
@@ -63,7 +63,7 @@ export function ContactPanel() {
           <input
             value={senderName}
             onChange={(event) => setSenderName(event.target.value)}
-            className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition duration-200 placeholder:text-slate-500 focus:border-orange-300 focus:bg-slate-950/90"
+            className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-slate-100 outline-none transition duration-200 placeholder:text-slate-500 focus:border-lime-300 focus:bg-black/55"
             placeholder="Jordan Ellis"
           />
         </label>
@@ -75,7 +75,7 @@ export function ContactPanel() {
           <select
             value={projectType}
             onChange={(event) => setProjectType(event.target.value)}
-            className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-slate-100 outline-none transition duration-200 focus:border-orange-300 focus:bg-slate-950/90"
+            className="w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-slate-100 outline-none transition duration-200 focus:border-lime-300 focus:bg-black/55"
           >
             <option>Collision estimate</option>
             <option>Custom bodywork</option>
@@ -87,7 +87,7 @@ export function ContactPanel() {
 
       <a
         href={mailtoHref}
-        className="mt-8 inline-flex w-full items-center justify-center rounded-full border border-orange-300/35 bg-orange-300/10 px-6 py-4 text-sm font-semibold text-orange-100 transition hover:border-orange-200 hover:bg-orange-300/15"
+        className="mt-8 inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/6 px-6 py-4 text-sm font-semibold text-white transition hover:border-lime-300/35 hover:bg-white/10"
       >
         Compose shop email
       </a>
@@ -96,7 +96,7 @@ export function ContactPanel() {
         href={facebookHref}
         target="_blank"
         rel="noreferrer"
-        className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-blue-300/35 bg-blue-300/10 px-6 py-4 text-sm font-semibold text-blue-100 transition hover:border-blue-200 hover:bg-blue-300/15"
+        className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/4 px-6 py-4 text-sm font-semibold text-slate-100 transition hover:border-lime-300/30 hover:bg-white/8"
       >
         Visit us on Facebook
       </a>

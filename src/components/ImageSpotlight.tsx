@@ -103,7 +103,7 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
                       <button
                         key={galleryImage.src}
                         type="button"
-                        className={`group overflow-hidden rounded-2xl border bg-slate-950/70 transition duration-200 ${isActive ? 'border-cyan-300/50 shadow-[0_0_0_1px_rgba(103,232,249,0.28)]' : 'border-white/10 hover:border-white/25'}`}
+                        className={`group overflow-hidden rounded-2xl border bg-slate-950/70 transition duration-200 ${isActive ? 'border-lime-300/50 shadow-[0_0_0_1px_rgba(190,242,100,0.26)]' : 'border-white/10 hover:border-white/25'}`}
                         onMouseEnter={() => setGalleryPreviewSrc(galleryImage.src)}
                         onFocus={() => setGalleryPreviewSrc(galleryImage.src)}
                         onClick={() => setGalleryPreviewSrc(galleryImage.src)}

@@ -54,6 +54,7 @@ function App() {
   const [pinnedImage, setPinnedImage] = useState<SpotlightImage | null>(null);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [beforeAfterStartIndex, setBeforeAfterStartIndex] = useState(0);
+  const [showFloatingCallPill, setShowFloatingCallPill] = useState(false);
   const [activeHeroService, setActiveHeroService] = useState<HeroServiceLink>(
     heroServiceLinks[0],
   );
@@ -61,6 +62,7 @@ function App() {
   const previewEndTimeoutRef = useRef<number | null>(null);
   const previewHistoryActiveRef = useRef(false);
   const suppressPreviewPopCloseRef = useRef(false);
+  const heroSectionRef = useRef<HTMLElement | null>(null);
   const facebookHref =
     "https://www.facebook.com/profile.php?id=61555435137428&__tn__=%2Cd";
   const mapsHref =
@@ -69,7 +71,10 @@ function App() {
     "underline decoration-white/20 underline-offset-4 transition hover:text-white hover:decoration-white/50";
 
   const activeImage = pinnedImage ?? hoveredImage;
-  const galleryPreviewImages = useMemo(() => heroGallery.slice(0, 4), []);
+  const heroTransformationCase = useMemo(
+    () => beforeAfterCases[2] ?? beforeAfterCases[0],
+    [],
+  );
   const visibleBeforeAfterCases = useMemo(() => {
     const visibleCount = Math.min(3, beforeAfterCases.length);
 
@@ -87,6 +92,36 @@ function App() {
     alt: shopTheme.imageAlt,
     label: "McClouds Collision and Customs logo",
   };
+  const heroTransformationBefore = useMemo<SpotlightImage>(() => {
+    const beforeImage =
+      heroTransformationCase.gallery?.find((image) =>
+        image.label.toLowerCase().includes("before"),
+      ) ??
+      heroTransformationCase.gallery?.[0] ?? {
+        label: "Before work",
+        imageSrc: heroTransformationCase.imageSrc,
+        imageAlt: heroTransformationCase.imageAlt,
+      };
+
+    return {
+      src: beforeImage.imageSrc,
+      alt: beforeImage.imageAlt,
+      label: `${heroTransformationCase.vehicle} before`,
+    };
+  }, [heroTransformationCase]);
+  const heroTransformationAfter = useMemo<SpotlightImage>(
+    () => ({
+      src: heroTransformationCase.imageSrc,
+      alt: heroTransformationCase.imageAlt,
+      label: `${heroTransformationCase.vehicle} after`,
+      gallery: heroTransformationCase.gallery?.map((image) => ({
+        src: image.imageSrc,
+        alt: image.imageAlt,
+        label: image.label,
+      })),
+    }),
+    [heroTransformationCase],
+  );
 
   const handlePreviewStart = (image: SpotlightImage) => {
     if (pinnedImage) {
@@ -213,8 +248,85 @@ function App() {
     return () => window.clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    const heroSection = heroSectionRef.current;
+
+    if (!heroSection) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowFloatingCallPill(!entry.isIntersecting);
+      },
+      {
+        threshold: 0.2,
+      },
+    );
+
+    observer.observe(heroSection);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <main className="overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(163,230,53,0.12),transparent_24%),radial-gradient(circle_at_80%_12%,rgba(34,211,238,0.14),transparent_22%)]">
+    <main className="overflow-hidden bg-[linear-gradient(180deg,#050705_0%,#0b100c_36%,#111611_100%),radial-gradient(circle_at_top_left,rgba(163,230,53,0.1),transparent_24%),radial-gradient(circle_at_80%_12%,rgba(255,255,255,0.05),transparent_22%)]">
+      <div className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-3 lg:px-8">
+          <div>
+            <p className="font-['Space_Grotesk'] text-lg font-semibold uppercase tracking-[0.1em] text-white sm:text-xl">
+              McCloud&apos;s Collision & Customs
+            </p>
+            <a
+              href={mapsHref}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[0.68rem] uppercase tracking-[0.28em] text-slate-400 transition hover:text-slate-200"
+            >
+              Cookeville, TN
+            </a>
+          </div>
+          <div className="hidden items-center gap-3 md:flex">
+            <a
+              href="#services"
+              className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 transition hover:border-white/25 hover:bg-white/5"
+            >
+              Services
+            </a>
+            <a
+              href="#before-after"
+              className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 transition hover:border-white/25 hover:bg-white/5"
+            >
+              Before &amp; After
+            </a>
+            <a
+              href="#booking"
+              className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200 transition hover:border-white/25 hover:bg-white/5"
+            >
+              Contact
+            </a>
+          </div>
+          <a
+            href="tel:9313193933"
+            className="inline-flex items-center justify-center rounded-full border border-lime-300/35 bg-lime-300/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15 sm:px-5"
+          >
+            Call (931) 319-3933
+          </a>
+        </div>
+      </div>
+      <a
+        href="tel:9313193933"
+        className={`fixed bottom-4 left-4 right-4 z-50 inline-flex items-center justify-center rounded-full border border-lime-300/40 bg-slate-950/92 px-5 py-4 text-sm font-semibold text-lime-50 shadow-[0_20px_50px_rgba(2,6,23,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-lime-200 hover:bg-slate-900 sm:bottom-6 sm:left-auto sm:right-6 sm:px-6 ${
+          showFloatingCallPill
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-4 opacity-0"
+        }`}
+      >
+        <span className="sm:hidden">Call Now</span>
+        <span className="hidden sm:inline">
+          Call Now for a Free Estimate: (931) 319-3933
+        </span>
+      </a>
       <GalleryModal
         images={heroGallery}
         open={galleryOpen}
@@ -225,15 +337,23 @@ function App() {
         pinned={Boolean(pinnedImage)}
         onClose={handleCloseImage}
       />
-      <section className="relative isolate border-b border-white/10">
+      <section
+        ref={heroSectionRef}
+        className="relative isolate border-b border-white/10"
+      >
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.38),rgba(2,6,23,0.78)),radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_38%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:88px_88px] opacity-20" />
-        <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-lime-300/10 via-cyan-300/10 to-transparent blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-lime-300/12 via-white/6 to-transparent blur-3xl" />
         <div className="absolute left-[-8rem] top-24 h-72 w-72 rounded-full bg-lime-300/10 blur-[120px]" />
-        <div className="absolute right-[-6rem] top-32 h-80 w-80 rounded-full bg-cyan-300/10 blur-[140px]" />
+        <div className="absolute right-[-6rem] top-32 h-80 w-80 rounded-full bg-white/8 blur-[140px]" />
+        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(135deg,transparent_0,transparent_46%,rgba(255,255,255,0.85)_50%,transparent_54%,transparent_100%)] [background-size:16px_16px]" />
         <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 pb-20 pt-8 lg:px-8">
           <header className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-[56rem]">
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-lime-200">
+              <p className="text-lg font-semibold uppercase tracking-[0.12em] text-slate-200 sm:text-xl lg:text-2xl">
+                McCloud&apos;s Collision &amp; Customs
+              </p>
+              <h1 className="mt-3 max-w-4xl font-['Space_Grotesk'] text-4xl font-semibold leading-[0.94] text-white sm:text-5xl lg:text-[5.2rem]">
                 Collision Repair &amp; Custom Paint in{" "}
                 <a
                   href={mapsHref}
@@ -243,11 +363,11 @@ function App() {
                 >
                   Cookeville, TN
                 </a>
-              </p>
-              <h1 className="mt-3 text-balance font-['Space_Grotesk'] text-2xl font-semibold uppercase tracking-[0.08em] text-slate-100 sm:whitespace-nowrap sm:text-3xl lg:text-[2.6rem]">
-                McCloud&apos;s Collision & Customs
               </h1>
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-400">
+              <p className="mt-5 font-['Space_Grotesk'] text-2xl font-semibold text-lime-100 sm:text-3xl">
+                Real repair work. Clean custom paint.
+              </p>
+              <p className="mt-4 text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-400">
                 Serving{" "}
                 <a
                   href={mapsHref}
@@ -258,9 +378,10 @@ function App() {
                   Cookeville, Tennessee
                 </a>
               </p>
-              <p className="mt-2 text-sm text-slate-300">
-                All your custom automotive painting needs. Cars, trucks, and
-                bikes. 35 years experience.
+              <p className="mt-3 text-sm text-slate-300">
+                Free estimates. Insurance claims welcome. Locally owned in
+                Cookeville with 35+ years of hands-on collision repair, custom
+                paint, restoration work, and bike and truck builds.
               </p>
             </div>
             <div className="pt-2 sm:pt-10">
@@ -295,18 +416,6 @@ function App() {
               >
                 Based in Cookeville, TN at 1309 W. Broad Street.
               </a>
-              <h1 className="mt-8 max-w-4xl font-['Space_Grotesk'] text-5xl font-semibold leading-[0.94] text-white sm:text-6xl lg:text-[5.2rem]">
-                Collision repair and custom paint in{" "}
-                <a
-                  href={mapsHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={locationLinkClassName}
-                >
-                  Cookeville, Tennessee
-                </a>
-                .
-              </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
                 McCloud&apos;s handles collision repair, custom paint,
                 fabrication, bikes, trucks, insurance work, and restoration
@@ -322,6 +431,21 @@ function App() {
                 . One of the few shops with a computer color scanner to match
                 paint and mix the paint in-house.
               </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {[
+                  "Free Estimates",
+                  "Insurance Claims Welcome",
+                  "Locally Owned in Cookeville",
+                  "35+ Years Experience",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-100"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
               <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-300">
                 {heroServiceLinks.map((item) => {
                   const active = item.title === activeHeroService.title;
@@ -367,13 +491,13 @@ function App() {
                   href={facebookHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-blue-300/25 bg-blue-300/10 px-6 py-4 text-sm font-semibold text-blue-50 transition hover:border-blue-200 hover:bg-blue-300/15"
+                  className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/6 px-6 py-4 text-sm font-semibold text-white transition hover:border-lime-300/30 hover:bg-white/10"
                 >
                   Facebook
                 </a>
                 <a
                   href="tel:9313193933"
-                  className="inline-flex items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-300/10 px-6 py-4 text-sm font-semibold text-cyan-50 transition hover:border-cyan-200 hover:bg-cyan-300/15"
+                  className="inline-flex items-center justify-center rounded-full border border-lime-300/25 bg-lime-300/10 px-6 py-4 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15"
                 >
                   Call the shop now: (931) 319-3933
                 </a>
@@ -407,44 +531,84 @@ function App() {
               <div className="panel relative overflow-hidden rounded-[2.25rem] p-5 sm:p-7">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(163,230,53,0.14),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.12),transparent_38%)]" />
                 <div className="relative">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="max-w-sm">
-                      <p className="text-sm uppercase tracking-[0.32em] text-slate-400">
-                        Gallery
-                      </p>
-                      <h2 className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold text-white">
-                        Finished work from the shop.
-                      </h2>
-                      <p className="mt-4 text-sm leading-7 text-slate-300">
-                        Open the full gallery to browse the shop&apos;s finished
-                        after-work images in one place.
-                      </p>
-                    </div>
+                  <div className="max-w-xl">
+                    <p className="text-sm uppercase tracking-[0.32em] text-slate-400">
+                      Featured transformation
+                    </p>
+                    <h2 className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold text-white">
+                      Before and after work customers can read instantly.
+                    </h2>
+                    <p className="mt-4 text-sm leading-7 text-slate-300">
+                      Real before-and-after repair work from McCloud&apos;s
+                      Collision &amp; Customs in{" "}
+                      <a
+                        href={mapsHref}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={locationLinkClassName}
+                      >
+                        Cookeville, TN
+                      </a>
+                      , showing the kind of finish customers can expect when the
+                      job is done right.
+                    </p>
                   </div>
-                  <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                    {galleryPreviewImages.map((item) => (
-                      <figure
+                  <div className="mt-8 grid gap-4 lg:grid-cols-2">
+                    {[
+                      {
+                        label: "Before",
+                        accentClassName:
+                          "border-red-300/20 bg-red-400/[0.08] text-red-100",
+                        image: heroTransformationBefore,
+                      },
+                      {
+                        label: "After",
+                        accentClassName:
+                          "border-emerald-300/20 bg-emerald-400/[0.08] text-emerald-100",
+                        image: heroTransformationAfter,
+                      },
+                    ].map((item) => (
+                      <div
                         key={item.label}
                         className="overflow-hidden rounded-[1.9rem] border border-white/10 bg-slate-950/55"
                       >
-                        <img
-                          src={item.imageSrc}
-                          alt={item.imageAlt}
-                          className="h-56 w-full object-cover sm:h-60"
-                        />
-                        <figcaption className="border-t border-white/10 px-4 py-4 text-sm font-medium text-slate-200">
-                          {item.label}
-                        </figcaption>
-                      </figure>
+                        <div className="relative">
+                          <InteractiveImage
+                            image={item.image}
+                            wrapperClassName="rounded-none border-0 bg-transparent"
+                            imageClassName="h-64 w-full object-cover sm:h-72"
+                            overlayLabel={`Open ${item.label.toLowerCase()} image`}
+                            onPreviewStart={handlePreviewStart}
+                            onPreviewEnd={handlePreviewEnd}
+                            onOpen={handleOpenImage}
+                          />
+                          <span
+                            className={`pointer-events-none absolute left-4 top-4 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] ${item.accentClassName}`}
+                          >
+                            {item.label}
+                          </span>
+                        </div>
+                      </div>
                     ))}
                   </div>
-                  <div className="mt-6">
+                  <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
+                        Featured job
+                      </p>
+                      <p className="mt-2 text-lg font-semibold text-white">
+                        {heroTransformationCase.vehicle}
+                      </p>
+                      <p className="mt-1 text-sm text-slate-300">
+                        {heroTransformationCase.workType}
+                      </p>
+                    </div>
                     <button
                       type="button"
                       onClick={handleOpenGallery}
                       className="inline-flex items-center justify-center rounded-full border border-lime-300/35 bg-lime-300/10 px-6 py-4 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15"
                     >
-                      View Gallery
+                      View Full Gallery
                     </button>
                   </div>
                 </div>
@@ -537,42 +701,52 @@ function App() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-6 py-24 lg:px-8">
-        <SectionHeading
-          eyebrow="Before and after"
-          title={
-            <>
-              Before and after collision repair and paint work in{" "}
-              <a
-                href={mapsHref}
-                target="_blank"
-                rel="noreferrer"
-                className={locationLinkClassName}
-              >
-                Cookeville, TN
-              </a>
-              .
-            </>
-          }
-          description="Real jobs from the shop with visible transformations, cleaner body lines, and finished paintwork that show what the work looks like when it leaves right."
-        />
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
-          {visibleBeforeAfterCases.map((item) => (
-            <BeforeAfterCard
-              key={`${item.vehicle}-${beforeAfterStartIndex}`}
-              item={item}
-              onPreviewStart={handlePreviewStart}
-              onPreviewEnd={handlePreviewEnd}
-              onOpen={handleOpenImage}
-            />
-          ))}
+      <section
+        id="before-after"
+        className="relative overflow-hidden border-y border-white/10 bg-[linear-gradient(180deg,rgba(2,6,23,0.92),rgba(3,7,18,0.98))]"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(34,211,238,0.08),transparent_24%),radial-gradient(circle_at_85%_80%,rgba(163,230,53,0.07),transparent_22%)]" />
+        <div className="absolute inset-0 opacity-[0.03] [background-image:linear-gradient(90deg,rgba(255,255,255,0.9)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.9)_1px,transparent_1px)] [background-size:96px_96px]" />
+        <div className="relative mx-auto w-full max-w-7xl px-6 py-24 lg:px-8">
+          <SectionHeading
+            eyebrow="Before and after"
+            title={
+              <>
+                Before and after collision repair and paint work in{" "}
+                <a
+                  href={mapsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={locationLinkClassName}
+                >
+                  Cookeville, TN
+                </a>
+                .
+              </>
+            }
+            description="Real jobs from the shop with visible transformations, cleaner body lines, and finished paintwork that show what the work looks like when it leaves right."
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {visibleBeforeAfterCases.map((item) => (
+              <BeforeAfterCard
+                key={`${item.vehicle}-${beforeAfterStartIndex}`}
+                item={item}
+                onPreviewStart={handlePreviewStart}
+                onPreviewEnd={handlePreviewEnd}
+                onOpen={handleOpenImage}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
       <section
         id="booking"
-        className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-24 lg:grid-cols-[0.9fr] lg:px-8"
+        className="relative overflow-hidden"
       >
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.9),rgba(2,6,23,0.96)),radial-gradient(circle_at_top_right,rgba(163,230,53,0.08),transparent_28%)]" />
+        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(135deg,transparent_0,transparent_46%,rgba(255,255,255,0.95)_50%,transparent_54%,transparent_100%)] [background-size:18px_18px]" />
+        <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-6 py-24 lg:grid-cols-[0.9fr] lg:px-8">
         {/* Booking form is disabled until the backend workflow is ready.
         <div>
           <SectionHeading
@@ -583,7 +757,8 @@ function App() {
           <BookingForm />
         </div>
         */}
-        <ContactPanel />
+          <ContactPanel />
+        </div>
       </section>
 
       <section className="border-t border-white/10 bg-slate-950/40">
