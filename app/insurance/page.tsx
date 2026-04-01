@@ -6,6 +6,14 @@ import { serviceHighlights } from "../../src/data/siteContent";
 const mapsHref =
   "https://www.google.com/maps/dir/?api=1&destination=1309+W+Broad+St,+Cookeville,+TN+38501";
 
+type CustomerStep = {
+  title: string;
+  body: string;
+  href?: string;
+  pill?: string;
+  external?: boolean;
+};
+
 export default function InsurancePage() {
   const collisionImage = serviceHighlights[0];
   const repairCase = {
@@ -13,6 +21,25 @@ export default function InsurancePage() {
       "/Images/beforeAndAfter/organized_photos_aligned/after_work/project_03_red_classic_truck_after_work_03.jpg",
     imageAlt: "Finished red classic truck after bodywork and paint",
   };
+  const customerSteps: CustomerStep[] = [
+    {
+      title: "Call first",
+      body: "Call before you come so the shop knows what kind of repair or estimate you need.",
+      href: "tel:9313193933",
+      pill: "(931) 319-3933",
+    },
+    {
+      title: "Bring with you",
+      body: "Bring claim details, photos, and any paperwork you already have from insurance.",
+      href: mapsHref,
+      pill: "1309 W Broad St, Cookeville, TN 38501",
+      external: true,
+    },
+    {
+      title: "Outside Cookeville",
+      body: "The shop still serves customers across Putnam County and surrounding areas, not just drivers inside city limits.",
+    },
+  ];
 
   return (
     <SiteShell>
@@ -100,13 +127,24 @@ export default function InsurancePage() {
             description="Most people are trying to solve the same problems quickly after an accident or damage estimate."
           />
           <div className="mt-12 grid gap-6 xl:grid-cols-3">
-            {[
-              "Call before you come so the shop knows what kind of repair or estimate you need.",
-              "Bring claim details, photos, and any paperwork you already have from insurance.",
-              "If you are coming from outside Cookeville, the shop still serves customers across Putnam County and surrounding areas.",
-            ].map((item) => (
-              <div key={item} className="panel rounded-[1.8rem] p-6">
-                <p className="text-base leading-8 text-slate-300">{item}</p>
+            {customerSteps.map((item) => (
+              <div key={item.title} className="panel rounded-[1.8rem] p-6">
+                <p className="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-slate-400">
+                  {item.title}
+                </p>
+                <p className="mt-4 text-base leading-8 text-slate-300">
+                  {item.body}
+                </p>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noreferrer" : undefined}
+                    className="mt-5 inline-flex min-h-12 items-center justify-center rounded-full border border-lime-300/35 bg-lime-300/12 px-4 py-3 text-center text-sm font-semibold text-lime-50 transition hover:-translate-y-0.5 hover:border-lime-200 hover:bg-lime-300/18"
+                  >
+                    {item.pill}
+                  </a>
+                ) : null}
               </div>
             ))}
           </div>
