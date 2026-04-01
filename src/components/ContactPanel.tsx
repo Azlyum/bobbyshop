@@ -14,25 +14,46 @@ export function ContactPanel() {
     return `mailto:Mccloudscollision@yahoo.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }, [projectType, senderName]);
 
+  const locationLinkClassName =
+    "underline decoration-white/20 underline-offset-4 transition hover:text-white hover:decoration-white/50";
+
   return (
     <aside className="panel rounded-[2rem] p-6 shadow-[0_30px_80px_rgba(2,6,23,0.3)] sm:p-8">
       <p className="text-sm uppercase tracking-[0.32em] text-slate-400">
         Contact
       </p>
       <h3 className="mt-4 font-['Space_Grotesk'] text-3xl font-semibold leading-tight text-white">
-        Reach the shop directly by email.
+        Call or email for a free estimate in{" "}
+        <a
+          href={mapsHref}
+          target="_blank"
+          rel="noreferrer"
+          className={locationLinkClassName}
+        >
+          Cookeville, TN
+        </a>
+        .
       </h3>
       <p className="mt-4 text-base leading-8 text-slate-300">
-        Use the quick mail action for collision estimates, custom work
-        questions, scheduling, or photo-based damage reviews.
+        Serving{" "}
+        <a
+          href={mapsHref}
+          target="_blank"
+          rel="noreferrer"
+          className={locationLinkClassName}
+        >
+          Cookeville, Tennessee
+        </a>{" "}
+        with collision repair, custom paint, restoration work, and
+        insurance-related repairs backed by 35+ years of shop experience.
       </p>
 
-      {/* <a
+      <a
         href="tel:9313193933"
-        className="mt-6 inline-flex items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-300/15"
+        className="mt-6 inline-flex w-full items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-300/10 px-5 py-4 text-sm font-semibold text-cyan-100 transition hover:border-cyan-200 hover:bg-cyan-300/15"
       >
-        Give us a call: (931) 319-3933
-      </a> */}
+        Call now for a free estimate: (931) 319-3933
+      </a>
 
       <div className="mt-8 space-y-5">
         <label className="block">

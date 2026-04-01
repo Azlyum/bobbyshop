@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import { GalleryImage } from '../data/siteContent';
-import { SpotlightImage } from './InteractiveImage';
 
 type GalleryModalProps = {
   images: GalleryImage[];
   open: boolean;
   onClose: () => void;
-  onOpenImage: (image: SpotlightImage) => void;
 };
 
-export function GalleryModal({ images, open, onClose, onOpenImage }: GalleryModalProps) {
+export function GalleryModal({ images, open, onClose }: GalleryModalProps) {
   useEffect(() => {
     if (!open) {
       return;
@@ -62,21 +60,19 @@ export function GalleryModal({ images, open, onClose, onOpenImage }: GalleryModa
         <div className="overflow-y-auto px-5 py-5 sm:px-7 sm:py-7">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {images.map((item) => (
-              <button
+              <figure
                 key={`${item.imageSrc}-${item.label}`}
-                type="button"
-                className="group overflow-hidden rounded-[1.6rem] border border-white/10 bg-slate-950/50 text-left transition hover:border-white/20 hover:bg-slate-950/65"
-                onClick={() => onOpenImage({ src: item.imageSrc, alt: item.imageAlt, label: item.label })}
+                className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-slate-950/50"
               >
                 <img
                   src={item.imageSrc}
                   alt={item.imageAlt}
-                  className="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  className="h-56 w-full object-cover"
                 />
-                <div className="border-t border-white/10 px-4 py-4">
+                <figcaption className="border-t border-white/10 px-4 py-4">
                   <p className="text-sm font-medium text-slate-100">{item.label}</p>
-                </div>
-              </button>
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>

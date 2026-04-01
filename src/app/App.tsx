@@ -65,6 +65,8 @@ function App() {
     "https://www.facebook.com/profile.php?id=61555435137428&__tn__=%2Cd";
   const mapsHref =
     "https://www.google.com/maps/dir/?api=1&destination=1309+W+Broad+St,+Cookeville,+TN+38501";
+  const locationLinkClassName =
+    "underline decoration-white/20 underline-offset-4 transition hover:text-white hover:decoration-white/50";
 
   const activeImage = pinnedImage ?? hoveredImage;
   const galleryPreviewImages = useMemo(() => heroGallery.slice(0, 4), []);
@@ -217,7 +219,6 @@ function App() {
         images={heroGallery}
         open={galleryOpen}
         onClose={handleCloseGallery}
-        onOpenImage={handleOpenImage}
       />
       <ImageSpotlight
         image={activeImage}
@@ -232,11 +233,30 @@ function App() {
         <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 pb-20 pt-8 lg:px-8">
           <header className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-[56rem]">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-lime-200">
+                Collision Repair &amp; Custom Paint in{" "}
+                <a
+                  href={mapsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline decoration-lime-100/30 underline-offset-4 transition hover:decoration-lime-100/70"
+                >
+                  Cookeville, TN
+                </a>
+              </p>
               <h1 className="mt-3 text-balance font-['Space_Grotesk'] text-2xl font-semibold uppercase tracking-[0.08em] text-slate-100 sm:whitespace-nowrap sm:text-3xl lg:text-[2.6rem]">
                 McCloud&apos;s Collision & Customs
               </h1>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-400">
-                Cookeville, Tennessee
+                Serving{" "}
+                <a
+                  href={mapsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={locationLinkClassName}
+                >
+                  Cookeville, Tennessee
+                </a>
               </p>
               <p className="mt-2 text-sm text-slate-300">
                 All your custom automotive painting needs. Cars, trucks, and
@@ -245,10 +265,10 @@ function App() {
             </div>
             <div className="pt-2 sm:pt-10">
               <a
-                href="#booking"
+                href="tel:9313193933"
                 className="inline-flex items-center justify-center self-start rounded-full border border-lime-300/35 bg-lime-300/10 px-5 py-3 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15 sm:self-auto"
               >
-                Get in touch with the shop
+                Call now: (931) 319-3933
               </a>
             </div>
           </header>
@@ -273,18 +293,34 @@ function App() {
                 rel="noreferrer"
                 className="inline-flex rounded-full border border-lime-300/25 bg-lime-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-lime-100 transition hover:border-lime-200/40 hover:bg-lime-300/15"
               >
-                1309 W. Broad street, Cookeville, Tenneessee, 38501.
+                Based in Cookeville, TN at 1309 W. Broad Street.
               </a>
               <h1 className="mt-8 max-w-4xl font-['Space_Grotesk'] text-5xl font-semibold leading-[0.94] text-white sm:text-6xl lg:text-[5.2rem]">
-                Real repair work. Clean custom paint. A shop that still builds
-                by hand.
+                Collision repair and custom paint in{" "}
+                <a
+                  href={mapsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={locationLinkClassName}
+                >
+                  Cookeville, Tennessee
+                </a>
+                .
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-                McCloud&apos;s works on collision repair, custom paint,
-                fabrication, bikes, trucks, and the kind of projects that need a
-                shop willing to slow down and get the details right. One of the
-                few shops with a computer color scanner to match paint and mix
-                the paint in-house.
+                McCloud&apos;s handles collision repair, custom paint,
+                fabrication, bikes, trucks, insurance work, and restoration
+                jobs for drivers across{" "}
+                <a
+                  href={mapsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={locationLinkClassName}
+                >
+                  Cookeville, Tennessee
+                </a>
+                . One of the few shops with a computer color scanner to match
+                paint and mix the paint in-house.
               </p>
               <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-300">
                 {heroServiceLinks.map((item) => {
@@ -316,16 +352,16 @@ function App() {
               </div>
               <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
                 <a
-                  href="#booking"
+                  href="tel:9313193933"
                   className="inline-flex items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
                 >
-                  Schedule a consult
+                  Call Now for a Free Estimate
                 </a>
                 <a
                   href="mailto:Mccloudscollision@yahoo.com?subject=Shop%20Inquiry"
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-4 text-sm font-semibold text-slate-100 transition hover:border-white/30 hover:bg-white/5"
                 >
-                  Email the shop
+                  Get a Quote Today
                 </a>
                 <a
                   href={facebookHref}
@@ -339,7 +375,7 @@ function App() {
                   href="tel:9313193933"
                   className="inline-flex items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-300/10 px-6 py-4 text-sm font-semibold text-cyan-50 transition hover:border-cyan-200 hover:bg-cyan-300/15"
                 >
-                  Give us a call: (931) 319-3933
+                  Call the shop now: (931) 319-3933
                 </a>
               </div>
               <dl className="mt-12 grid gap-4 sm:grid-cols-3">
@@ -349,7 +385,18 @@ function App() {
                       {stat.label}
                     </dt>
                     <dd className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold text-white">
-                      {stat.value}
+                      {stat.label === "Based in" ? (
+                        <a
+                          href={mapsHref}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={locationLinkClassName}
+                        >
+                          {stat.value}
+                        </a>
+                      ) : (
+                        stat.value
+                      )}
                     </dd>
                   </div>
                 ))}
@@ -493,7 +540,21 @@ function App() {
       <section className="mx-auto w-full max-w-7xl px-6 py-24 lg:px-8">
         <SectionHeading
           eyebrow="Before and after"
-          title="A clear look at what changes when the work is done right."
+          title={
+            <>
+              Before and after collision repair and paint work in{" "}
+              <a
+                href={mapsHref}
+                target="_blank"
+                rel="noreferrer"
+                className={locationLinkClassName}
+              >
+                Cookeville, TN
+              </a>
+              .
+            </>
+          }
+          description="Real jobs from the shop with visible transformations, cleaner body lines, and finished paintwork that show what the work looks like when it leaves right."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-3">
           {visibleBeforeAfterCases.map((item) => (
@@ -531,15 +592,30 @@ function App() {
             <SectionHeading
               eyebrow="FAQ"
               title="Questions customers usually ask before they stop by."
-              description="If the job is time-sensitive or you want to talk through the work directly, give us a call and the shop can point you in the right direction."
+              description={
+                <>
+                  Serving{" "}
+                  <a
+                    href={mapsHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={locationLinkClassName}
+                  >
+                    Cookeville, Tennessee
+                  </a>{" "}
+                  with collision repair, custom paint, and insurance-related
+                  repairs. If the job is time-sensitive, call the shop directly
+                  for the fastest answer.
+                </>
+              }
             />
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              {/* <a
+              <a
                 href="tel:9313193933"
                 className="inline-flex items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
               >
-                Give us a call
-              </a> */}
+                Call now for a free estimate
+              </a>
               <a
                 href="tel: 9313193933"
                 className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-4 text-sm font-semibold text-slate-100 transition hover:border-white/30 hover:bg-white/5"
@@ -547,6 +623,19 @@ function App() {
                 Tel : (931) 319-3933
               </a>
             </div>
+            <p className="mt-6 max-w-xl text-sm leading-7 text-slate-400">
+              Based in{" "}
+              <a
+                href={mapsHref}
+                target="_blank"
+                rel="noreferrer"
+                className={locationLinkClassName}
+              >
+                Cookeville, TN
+              </a>
+              . Locally owned. 35+ years of experience with collision repair,
+              custom paint, restoration work, and bike and truck builds.
+            </p>
           </div>
           <FaqList />
         </div>

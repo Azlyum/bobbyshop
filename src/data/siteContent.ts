@@ -47,9 +47,9 @@ export const shopTheme = {
 } as const;
 
 export const stats = [
-  { label: 'Estimate replies', value: '24 hrs' },
-  { label: 'Completed jobs', value: '140+' },
-  { label: 'Repeat customers', value: '92%' }
+  { label: 'Years experience', value: '35+' },
+  { label: 'Insurance repair help', value: 'Yes' },
+  { label: 'Based in', value: 'Cookeville, TN' }
 ] as const;
 
 export const processSteps = [
