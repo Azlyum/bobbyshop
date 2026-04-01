@@ -96,7 +96,6 @@ export function GalleryModal({
                   onScrollPositionChange(
                     scrollContainerRef.current?.scrollTop ?? initialScrollTop
                   );
-                  onClose();
                   onOpenImage({
                     src: item.imageSrc,
                     alt: item.imageAlt,
