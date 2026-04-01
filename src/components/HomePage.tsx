@@ -65,7 +65,9 @@ function HomePage() {
   const previewStartTimeoutRef = useRef<number | null>(null);
   const previewEndTimeoutRef = useRef<number | null>(null);
   const previewHistoryActiveRef = useRef(false);
+  const galleryHistoryActiveRef = useRef(false);
   const suppressPreviewPopCloseRef = useRef(false);
+  const suppressGalleryPopCloseRef = useRef(false);
   const spotlightSourceRef = useRef<SpotlightSource>(null);
   const restoreGalleryAfterSpotlightRef = useRef(false);
   const galleryScrollTopRef = useRef(0);
@@ -222,10 +224,22 @@ function HomePage() {
   };
 
   const handleOpenGallery = () => {
+    if (!galleryHistoryActiveRef.current) {
+      window.history.pushState({ galleryPreview: true }, "");
+      galleryHistoryActiveRef.current = true;
+    }
+
     setGalleryOpen(true);
   };
 
   const handleCloseGallery = () => {
+    if (galleryHistoryActiveRef.current) {
+      suppressGalleryPopCloseRef.current = true;
+      galleryHistoryActiveRef.current = false;
+      window.history.back();
+      return;
+    }
+
     if (spotlightSourceRef.current !== "gallery") {
       restoreGalleryAfterSpotlightRef.current = false;
     }
@@ -263,6 +277,17 @@ function HomePage() {
         return;
       }
 
+      if (suppressGalleryPopCloseRef.current) {
+        suppressGalleryPopCloseRef.current = false;
+
+        if (spotlightSourceRef.current !== "gallery") {
+          restoreGalleryAfterSpotlightRef.current = false;
+        }
+
+        setGalleryOpen(false);
+        return;
+      }
+
       if (previewHistoryActiveRef.current) {
         const shouldRestoreGallery = restoreGalleryAfterSpotlightRef.current;
         previewHistoryActiveRef.current = false;
@@ -274,6 +299,18 @@ function HomePage() {
         if (shouldRestoreGallery) {
           setGalleryOpen(true);
         }
+
+        return;
+      }
+
+      if (galleryHistoryActiveRef.current) {
+        galleryHistoryActiveRef.current = false;
+
+        if (spotlightSourceRef.current !== "gallery") {
+          restoreGalleryAfterSpotlightRef.current = false;
+        }
+
+        setGalleryOpen(false);
       }
     };
 
