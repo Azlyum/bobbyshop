@@ -37,6 +37,9 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
       return;
     }
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
@@ -45,7 +48,10 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
 
     window.addEventListener('keydown', handleKeyDown);
 
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [onClose, pinned]);
 
   if (!image) {
@@ -65,7 +71,7 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
       />
       <div className="relative mx-auto w-full max-w-5xl">
         <div
-          className={`relative max-h-[calc(100vh-1.5rem)] overflow-y-auto rounded-[2rem] border border-white/12 bg-[linear-gradient(180deg,rgba(3,7,18,0.92),rgba(15,23,42,0.82))] shadow-[0_45px_140px_rgba(2,6,23,0.65)] transition duration-300 sm:max-h-[calc(100vh-4rem)] ${pinned ? 'scale-100 opacity-100' : 'scale-[0.985] opacity-100'}`}
+          className={`relative max-h-[calc(100vh-1.5rem)] overflow-y-auto overscroll-contain rounded-[2rem] border border-white/12 bg-[linear-gradient(180deg,rgba(3,7,18,0.92),rgba(15,23,42,0.82))] shadow-[0_45px_140px_rgba(2,6,23,0.65)] transition duration-300 sm:max-h-[calc(100vh-4rem)] ${pinned ? 'scale-100 opacity-100' : 'scale-[0.985] opacity-100'}`}
         >
           {pinned ? (
             <button
