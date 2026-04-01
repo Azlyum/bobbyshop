@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { GalleryImage } from '../data/siteContent';
 import { SpotlightImage } from './InteractiveImage';
 
@@ -7,9 +7,20 @@ type GalleryModalProps = {
   open: boolean;
   onClose: () => void;
   onOpenImage: (image: SpotlightImage) => void;
+  initialScrollTop: number;
+  onScrollPositionChange: (scrollTop: number) => void;
 };
 
-export function GalleryModal({ images, open, onClose, onOpenImage }: GalleryModalProps) {
+export function GalleryModal({
+  images,
+  open,
+  onClose,
+  onOpenImage,
+  initialScrollTop,
+  onScrollPositionChange
+}: GalleryModalProps) {
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     if (!open) {
       return;
@@ -30,6 +41,14 @@ export function GalleryModal({ images, open, onClose, onOpenImage }: GalleryModa
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose, open]);
+
+  useEffect(() => {
+    if (!open || !scrollContainerRef.current) {
+      return;
+    }
+
+    scrollContainerRef.current.scrollTop = initialScrollTop;
+  }, [initialScrollTop, open]);
 
   if (!open) {
     return null;
@@ -59,7 +78,13 @@ export function GalleryModal({ images, open, onClose, onOpenImage }: GalleryModa
             &times;
           </button>
         </div>
-        <div className="overflow-y-auto px-5 py-5 sm:px-7 sm:py-7">
+        <div
+          ref={scrollContainerRef}
+          className="overflow-y-auto px-5 py-5 sm:px-7 sm:py-7"
+          onScroll={(event) =>
+            onScrollPositionChange(event.currentTarget.scrollTop)
+          }
+        >
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {images.map((item) => (
               <button
@@ -67,6 +92,9 @@ export function GalleryModal({ images, open, onClose, onOpenImage }: GalleryModa
                 type="button"
                 className="group overflow-hidden rounded-[1.6rem] border border-white/10 bg-slate-950/50 text-left transition duration-300 hover:-translate-y-0.5 hover:border-lime-300/30 hover:bg-slate-950/65"
                 onClick={() => {
+                  onScrollPositionChange(
+                    scrollContainerRef.current?.scrollTop ?? initialScrollTop
+                  );
                   onClose();
                   onOpenImage({
                     src: item.imageSrc,

@@ -65,6 +65,7 @@ function App() {
   const suppressPreviewPopCloseRef = useRef(false);
   const spotlightSourceRef = useRef<SpotlightSource>(null);
   const restoreGalleryAfterSpotlightRef = useRef(false);
+  const galleryScrollTopRef = useRef(0);
   const heroSectionRef = useRef<HTMLElement | null>(null);
   const facebookHref =
     "https://www.facebook.com/profile.php?id=61555435137428&__tn__=%2Cd";
@@ -381,6 +382,10 @@ function App() {
         open={galleryOpen}
         onClose={handleCloseGallery}
         onOpenImage={handleOpenGalleryImage}
+        initialScrollTop={galleryScrollTopRef.current}
+        onScrollPositionChange={(scrollTop) => {
+          galleryScrollTopRef.current = scrollTop;
+        }}
       />
       <ImageSpotlight
         image={activeImage}
