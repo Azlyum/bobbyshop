@@ -272,9 +272,9 @@ export const heroGallery: GalleryImage[] = [
     imageAlt: 'Red compact truck finished inside the shop'
   },
   {
-    label: 'Black dump truck',
+    label: 'Bronco finish',
     imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_07_black_dump_truck_after_work_01.jpg',
-    imageAlt: 'Black dump truck after repair and refinish'
+    imageAlt: 'Bronco after repair and refinish'
   },
   {
     label: 'Blue muscle car',
@@ -436,28 +436,28 @@ export const beforeAfterCases: BeforeAfterCase[] = [
     ]
   },
   {
-    vehicle: 'Black Dump Truck',
+    vehicle: 'Bronco',
     workType: 'Repair and refinish',
     before: 'Before paint and reassembly, the truck needed prep and correction work to get the finish back into shape.',
     after: 'The completed truck came back with a much stronger finish and a cleaner work-ready look.',
-    highlight: 'Commercial truck work',
+    highlight: 'Repair and refinish work',
     imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_07_black_dump_truck_after_work_01.jpg',
-    imageAlt: 'Black dump truck after repair and refinish work',
+    imageAlt: 'Bronco after repair and refinish work',
     gallery: [
       {
         label: 'After finished view',
         imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_07_black_dump_truck_after_work_01.jpg',
-        imageAlt: 'Black dump truck after repair'
+        imageAlt: 'Bronco after repair'
       },
       {
         label: 'Before rear prep',
         imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_07_black_dump_truck_before_work_01.jpg',
-        imageAlt: 'Black dump truck before repair from the rear'
+        imageAlt: 'Bronco before repair from the rear'
       },
       {
         label: 'Before side prep',
         imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_07_black_dump_truck_before_work_02.jpg',
-        imageAlt: 'Black dump truck before repair from the side'
+        imageAlt: 'Bronco before repair from the side'
       }
     ]
   },
@@ -479,11 +479,6 @@ export const beforeAfterCases: BeforeAfterCase[] = [
         label: 'After side profile',
         imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_16_silver_pickup_bodywork_after_work_02.jpg',
         imageAlt: 'Silver pickup truck after bodywork seen from the side'
-      },
-      {
-        label: 'Before front angle',
-        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_16_silver_pickup_bodywork_before_work_01.jpg',
-        imageAlt: 'Silver pickup truck before bodywork from the front angle'
       },
       {
         label: 'Before side angle',

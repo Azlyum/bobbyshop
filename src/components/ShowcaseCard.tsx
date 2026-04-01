@@ -10,7 +10,7 @@ type ShowcaseCardProps = {
 
 export function ShowcaseCard({ build, onPreviewStart, onPreviewEnd, onOpen }: ShowcaseCardProps) {
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 transition hover:-translate-y-1 hover:border-cyan-300/30">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-black/45 p-6 transition hover:-translate-y-1 hover:border-lime-300/30">
       <div className={`absolute inset-0 opacity-70 blur-3xl transition group-hover:opacity-100 ${build.glowClass}`} />
       <div className="relative flex h-full flex-col">
         <InteractiveImage

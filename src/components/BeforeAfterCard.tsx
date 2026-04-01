@@ -38,7 +38,7 @@ export function BeforeAfterCard({ item, onPreviewStart, onPreviewEnd, onOpen }: 
         <div>
           <p className="text-sm uppercase tracking-[0.32em] text-slate-400">{item.workType}</p>
           <h3 className="mt-4 font-['Space_Grotesk'] text-2xl font-semibold text-white">{item.vehicle}</h3>
-          <p className="mt-2 text-sm text-cyan-100">{item.highlight}</p>
+          <p className="mt-2 text-sm text-lime-100">{item.highlight}</p>
         </div>
       </div>
 
