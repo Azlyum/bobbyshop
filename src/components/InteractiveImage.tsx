@@ -2,6 +2,7 @@ export type SpotlightImage = {
   src: string;
   alt: string;
   label?: string;
+  gallery?: SpotlightImage[];
 };
 
 type InteractiveImageProps = {

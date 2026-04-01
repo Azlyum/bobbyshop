@@ -26,6 +26,7 @@ export type BeforeAfterCase = {
   highlight: string;
   imageSrc: string;
   imageAlt: string;
+  gallery?: GalleryImage[];
 };
 
 export type FaqItem = {
@@ -165,31 +166,164 @@ export const preferredSlots = [
 
 export const beforeAfterCases: BeforeAfterCase[] = [
   {
-    vehicle: 'Jeep Wrangler',
-    workType: 'Respray',
-    before: 'When it came into the shop, it had a white factory finish and the owner wanted to paint it Barbie Pink.',
-    after: 'When the Jeep left the shop, it had a fully refinished Barbie Pink paint job with a smooth, high-gloss finish that completely transformed its look.',
-    highlight: 'Repair and paint match',
-    imageSrc: '/Images/jeep-pink_after-side.png',
-    imageAlt: 'Pink Jeep Wrangler in the shop after custom paint work'
+    vehicle: 'Semi Truck',
+    workType: 'Collision and refinish',
+    before: 'The semi came in needing visible repair work and cleanup before it could be put back into service looking right again.',
+    after: 'After the repair and refinishing work, the truck had a cleaner, more complete look ready to go back on the road.',
+    highlight: 'Heavy-duty repair',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_02_semi_truck_after_work_02.jpg',
+    imageAlt: 'Semi truck after collision repair and refinish work',
+    gallery: [
+      {
+        label: 'After finished view',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_02_semi_truck_after_work_02.jpg',
+        imageAlt: 'Semi truck after repair from the front side'
+      },
+      {
+        label: 'Before damage view',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_02_semi_truck_before_work_01.jpg',
+        imageAlt: 'Semi truck before collision repair'
+      }
+    ]
   },
   {
-    vehicle: 'Harley-Davidson Touring Bike',
-    workType: 'Custom paint and graphics',
-    before: 'The paint had gone flat and the whole bike felt dated, even though the shape was still there.',
-    after: 'Fresh color and new graphics gave it the kind of road presence the bike should have had in the first place.',
-    highlight: 'Bike paint package',
-    imageSrc: '/Images/harley-checker_after-front-side.png',
-    imageAlt: 'Blue Harley-Davidson touring bike with checker graphics parked outside the shop'
+    vehicle: 'Black Dump Truck',
+    workType: 'Repair and refinish',
+    before: 'Before paint and reassembly, the truck needed prep and correction work to get the finish back into shape.',
+    after: 'The completed truck came back with a much stronger finish and a cleaner work-ready look.',
+    highlight: 'Commercial truck work',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_07_black_dump_truck_after_work_01.jpg',
+    imageAlt: 'Black dump truck after repair and refinish work',
+    gallery: [
+      {
+        label: 'After finished view',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_07_black_dump_truck_after_work_01.jpg',
+        imageAlt: 'Black dump truck after repair'
+      },
+      {
+        label: 'Before rear prep',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_07_black_dump_truck_before_work_01.jpg',
+        imageAlt: 'Black dump truck before repair from the rear'
+      },
+      {
+        label: 'Before side prep',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_07_black_dump_truck_before_work_02.jpg',
+        imageAlt: 'Black dump truck before repair from the side'
+      }
+    ]
   },
   {
-    vehicle: 'Harley Gas Tank',
-    workType: 'Custom Paint Job',
-    before: 'The tank came in with a plain, worn finish and no custom detailing.',
-    after: 'When the tank left the shop, it featured a deep black base with hand-painted old-school flames, finished with a high-gloss clear coat for a classic custom look.',
-    highlight: 'Restoration work',
-    imageSrc: '/Images/harley-saddlebags-flames_after.png',
-    imageAlt: 'Pair of custom motorcycle saddlebags with orange and black flame graphics'
+    vehicle: 'Silver Pickup',
+    workType: 'Bodywork and refinish',
+    before: 'The truck came in with body damage and rough panels that needed to be straightened before the finish work could even start.',
+    after: 'Once the repair and paint work were finished, the body lines cleaned up and the truck left looking complete again.',
+    highlight: 'Panel repair',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_16_silver_pickup_bodywork_after_work_01.jpg',
+    imageAlt: 'Silver pickup truck after bodywork and paint repair',
+    gallery: [
+      {
+        label: 'After front three-quarter',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_16_silver_pickup_bodywork_after_work_01.jpg',
+        imageAlt: 'Silver pickup truck after bodywork seen from the front side'
+      },
+      {
+        label: 'After side profile',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_16_silver_pickup_bodywork_after_work_02.jpg',
+        imageAlt: 'Silver pickup truck after bodywork seen from the side'
+      },
+      {
+        label: 'Before front angle',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_16_silver_pickup_bodywork_before_work_01.jpg',
+        imageAlt: 'Silver pickup truck before bodywork from the front angle'
+      },
+      {
+        label: 'Before side angle',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_16_silver_pickup_bodywork_before_work_02.jpg',
+        imageAlt: 'Silver pickup truck before bodywork from the side angle'
+      },
+      {
+        label: 'Before detail',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_16_silver_pickup_bodywork_before_work_03.jpg',
+        imageAlt: 'Silver pickup truck before bodywork with visible repair area'
+      },
+      {
+        label: 'Before door repair',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_16_silver_pickup_bodywork_before_work_04.jpg',
+        imageAlt: 'Silver pickup truck door during bodywork before paint'
+      }
+    ]
+  },
+  {
+    vehicle: 'Orange Motorcycle',
+    workType: 'Restoration and paint',
+    before: 'Before work started, the bike needed cleanup, correction, and a much stronger finish to bring the whole build back together.',
+    after: 'The final result brought the paint and bodywork into line with the rest of the project and gave the bike a sharper custom look.',
+    highlight: 'Motorcycle restoration',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_24_orange_motorcycle_restoration_after_work_01.jpg',
+    imageAlt: 'Orange motorcycle after restoration and paint work',
+    gallery: [
+      {
+        label: 'After full bike',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_24_orange_motorcycle_restoration_after_work_01.jpg',
+        imageAlt: 'Orange motorcycle after restoration seen from the side'
+      },
+      {
+        label: 'After front detail',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_24_orange_motorcycle_restoration_after_work_02.jpg',
+        imageAlt: 'Orange motorcycle after restoration with front detail visible'
+      },
+      {
+        label: 'Before initial state',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_24_orange_motorcycle_restoration_before_work_01.jpg',
+        imageAlt: 'Orange motorcycle before restoration work from the side'
+      },
+      {
+        label: 'Before front detail',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_24_orange_motorcycle_restoration_before_work_02.jpg',
+        imageAlt: 'Orange motorcycle before restoration with front detail visible'
+      },
+      {
+        label: 'Before rear detail',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_24_orange_motorcycle_restoration_before_work_03.jpg',
+        imageAlt: 'Orange motorcycle before restoration with rear detail visible'
+      }
+    ]
+  },
+  {
+    vehicle: 'Red Compact Truck',
+    workType: 'Bodywork and paint',
+    before: 'The truck came in mid-repair with heavy prep work across the cab, hood, and bed before it was ready for finish paint.',
+    after: 'Once the job was finished, the truck came back together with a clean red finish and a much sharper overall presentation.',
+    highlight: 'Classic truck rebuild',
+    imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_06_red_classic_pickup_after_work_02.jpg',
+    imageAlt: 'Red compact classic truck after bodywork and paint',
+    gallery: [
+      {
+        label: 'After shop view',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_06_red_classic_pickup_after_work_02.jpg',
+        imageAlt: 'Red compact classic truck after paint from the front side'
+      },
+      {
+        label: 'After finished side',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/after_work/project_06_red_classic_truck_after_work_04.jpg',
+        imageAlt: 'Red compact classic truck after paint inside the shop'
+      },
+      {
+        label: 'Before hood prep',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_06_red_classic_truck_before_work_01.jpg',
+        imageAlt: 'Red compact classic truck hood during prep before paint'
+      },
+      {
+        label: 'Before cab side',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_06_red_classic_truck_before_work_02.jpg',
+        imageAlt: 'Red compact classic truck cab side during bodywork before paint'
+      },
+      {
+        label: 'Before bed repair',
+        imageSrc: '/Images/beforeAndAfter/organized_photos_aligned/before_work/project_06_red_classic_truck_before_work_03.jpg',
+        imageAlt: 'Red compact classic truck bed during bodywork before paint'
+      }
+    ]
   }
 ];
 

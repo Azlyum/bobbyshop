@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { InteractiveImage, SpotlightImage } from './InteractiveImage';
 import { BeforeAfterCase } from '../data/siteContent';
 
@@ -9,10 +10,24 @@ type BeforeAfterCardProps = {
 };
 
 export function BeforeAfterCard({ item, onPreviewStart, onPreviewEnd, onOpen }: BeforeAfterCardProps) {
+  const spotlightImage = useMemo<SpotlightImage>(
+    () => ({
+      src: item.imageSrc,
+      alt: item.imageAlt,
+      label: item.vehicle,
+      gallery: item.gallery?.map((image) => ({
+        src: image.imageSrc,
+        alt: image.imageAlt,
+        label: image.label
+      }))
+    }),
+    [item.gallery, item.imageAlt, item.imageSrc, item.vehicle]
+  );
+
   return (
     <article className="panel flex h-full flex-col overflow-hidden rounded-[2rem] p-4 sm:p-6">
       <InteractiveImage
-        image={{ src: item.imageSrc, alt: item.imageAlt, label: item.vehicle }}
+        image={spotlightImage}
         wrapperClassName="rounded-[1.5rem] border border-white/10 bg-slate-950/60"
         imageClassName="h-56 w-full object-cover"
         onPreviewStart={onPreviewStart}

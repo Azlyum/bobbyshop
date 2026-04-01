@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { SpotlightImage } from './InteractiveImage';
 
 type ImageSpotlightProps = {
@@ -8,6 +8,30 @@ type ImageSpotlightProps = {
 };
 
 export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) {
+  const gallery = useMemo(() => {
+    if (!image) {
+      return [];
+    }
+
+    const imagePool = [image, ...(image.gallery ?? [])];
+    const seen = new Set<string>();
+
+    return imagePool.filter((item) => {
+      if (seen.has(item.src)) {
+        return false;
+      }
+
+      seen.add(item.src);
+      return true;
+    });
+  }, [image]);
+
+  const [galleryPreviewSrc, setGalleryPreviewSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    setGalleryPreviewSrc(null);
+  }, [image]);
+
   useEffect(() => {
     if (!pinned) {
       return;
@@ -28,6 +52,8 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
     return null;
   }
 
+  const activeDisplayImage = gallery.find((item) => item.src === galleryPreviewSrc) ?? image;
+
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 ${pinned ? 'pointer-events-auto' : 'pointer-events-none'}`}
@@ -46,14 +72,49 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
               ×
             </button>
           ) : null}
-          <div className="grid gap-0 lg:grid-cols-[1fr_18rem]">
+          <div className="grid gap-0 lg:min-h-[42rem] lg:grid-cols-[1fr_18rem]">
             <div className="bg-black/30 p-3 sm:p-4">
-              <img src={image.src} alt={image.alt} className="max-h-[76vh] w-full rounded-[1.5rem] object-contain" />
+              <div className="flex h-[22rem] items-center justify-center rounded-[1.5rem] bg-black/30 sm:h-[28rem] lg:h-[38rem]">
+                <img src={activeDisplayImage.src} alt={activeDisplayImage.alt} className="h-full w-full rounded-[1.5rem] object-contain" />
+              </div>
             </div>
-            <div className="flex flex-col justify-end border-t border-white/10 bg-black/30 p-5 lg:border-l lg:border-t-0 lg:p-6">
+            <div className="flex min-h-[18rem] flex-col border-t border-white/10 bg-black/30 p-5 lg:border-l lg:border-t-0 lg:p-6">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-lime-100/80">{pinned ? 'Full view' : 'Hover preview'}</p>
-              <p className="mt-4 text-sm leading-7 text-slate-200">{image.label ?? image.alt}</p>
-              {pinned ? <p className="mt-5 text-xs uppercase tracking-[0.22em] text-slate-400">Press escape or click outside to close</p> : null}
+              <p className="mt-4 min-h-[3.5rem] text-sm leading-7 text-slate-200">{activeDisplayImage.label ?? activeDisplayImage.alt}</p>
+              {gallery.length > 1 ? (
+                <div
+                  className="mt-6 grid grid-cols-2 gap-3"
+                  onMouseLeave={() => setGalleryPreviewSrc(null)}
+                  onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                      setGalleryPreviewSrc(null);
+                    }
+                  }}
+                >
+                  {gallery.map((galleryImage) => {
+                    const isActive = galleryImage.src === activeDisplayImage.src;
+
+                    return (
+                      <button
+                        key={galleryImage.src}
+                        type="button"
+                        className={`group overflow-hidden rounded-2xl border bg-slate-950/70 transition duration-200 ${isActive ? 'border-cyan-300/50 shadow-[0_0_0_1px_rgba(103,232,249,0.28)]' : 'border-white/10 hover:border-white/25'}`}
+                        onMouseEnter={() => setGalleryPreviewSrc(galleryImage.src)}
+                        onFocus={() => setGalleryPreviewSrc(galleryImage.src)}
+                        onClick={() => setGalleryPreviewSrc(galleryImage.src)}
+                        aria-label={`Preview ${galleryImage.label ?? galleryImage.alt}`}
+                      >
+                        <img
+                          src={galleryImage.src}
+                          alt={galleryImage.alt}
+                          className={`h-20 w-full object-cover transition duration-300 ${isActive ? 'scale-[1.12]' : 'group-hover:scale-110 group-focus-visible:scale-110'}`}
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : null}
+              {pinned ? <p className="mt-auto pt-5 text-xs uppercase tracking-[0.22em] text-slate-400">Press escape or click outside to close</p> : null}
             </div>
           </div>
         </div>
