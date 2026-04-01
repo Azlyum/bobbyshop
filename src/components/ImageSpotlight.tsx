@@ -61,8 +61,8 @@ export function ImageSpotlight({ image, pinned, onClose }: ImageSpotlightProps) 
 
   const activeDisplayImage = gallery.find((item) => item.src === galleryPreviewSrc) ?? image;
   const activeDescription = activeDisplayImage.alt
-    ? `${activeDisplayImage.alt} from McCloud's Collision & Customs in Cookeville, TN.`
-    : 'Finished work from McCloud\'s Collision & Customs in Cookeville, TN.';
+    ? activeDisplayImage.alt
+    : "Finished work from McCloud's Collision & Customs.";
 
   return (
     <div

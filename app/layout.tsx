@@ -4,7 +4,7 @@ import "../src/index.css";
 const siteUrl = "https://www.mccloudscollision.com";
 const siteName = "McCloud's Collision and Customs";
 const siteDescription =
-  "McCloud's Collision and Customs in Cookeville, Tennessee provides collision repair, custom paint, bodywork, refinishing, in-house paint mixing, and direct contact for estimates and shop inquiries.";
+  "McCloud's Collision and Customs in Cookeville, Tennessee provides collision repair, custom paint, bodywork, refinishing, and estimate support for drivers across Putnam County and surrounding areas.";
 const ogImage = `${siteUrl}/Images/mcclouds-brand_after-logo.jpg`;
 
 const structuredData = {
@@ -32,7 +32,11 @@ const structuredData = {
         postalCode: "38501",
         addressCountry: "US",
       },
-      areaServed: "Cookeville, Tennessee",
+      areaServed: [
+        "Cookeville, Tennessee",
+        "Putnam County, Tennessee",
+        "Surrounding Middle Tennessee communities",
+      ],
       priceRange: "$$",
       sameAs: [
         "https://www.facebook.com/profile.php?id=61555435137428&__tn__=%2Cd",
@@ -40,7 +44,7 @@ const structuredData = {
       hasMap:
         "https://www.google.com/maps/dir/?api=1&destination=1309+W+Broad+St,+Cookeville,+TN+38501",
       description:
-        "Collision repair, custom paint, bodywork, refinishing, restoration work, and custom vehicle builds.",
+        "Collision repair, custom paint, bodywork, refinishing, restoration work, and custom vehicle builds for Putnam County and surrounding areas.",
     },
   ],
 };
@@ -79,7 +83,7 @@ export const metadata: Metadata = {
     title:
       "McCloud's Collision and Customs | Collision Repair and Custom Paint in Cookeville, TN",
     description:
-      "Collision repair, custom paint, bodywork, refinishing, and shop-built custom work in Cookeville, Tennessee.",
+      "Collision repair, custom paint, bodywork, refinishing, and shop-built custom work in Cookeville, Tennessee for Putnam County and surrounding areas.",
     images: [
       {
         url: ogImage,
@@ -91,7 +95,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "McCloud's Collision and Customs | Cookeville, TN",
     description:
-      "Collision repair, custom paint, bodywork, and refinishing in Cookeville, Tennessee.",
+      "Collision repair, custom paint, bodywork, and refinishing in Cookeville, Tennessee for Putnam County and surrounding areas.",
     images: [ogImage],
   },
   icons: {
@@ -117,7 +121,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const noscriptText =
-    "McCloud's Collision and Customs in Cookeville, Tennessee offers collision repair, custom paint, bodywork, refinishing, and in-house paint matching. Call (931) 319-3933 or email Mccloudscollision@yahoo.com.";
+    "McCloud's Collision and Customs in Cookeville, Tennessee offers collision repair, custom paint, bodywork, and refinishing for Putnam County and surrounding areas. Call (931) 319-3933 or email Mccloudscollision@yahoo.com.";
 
   return (
     <html lang="en-US">
@@ -130,6 +134,9 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <noscript dangerouslySetInnerHTML={{ __html: noscriptText }} />
         {children}
         <script

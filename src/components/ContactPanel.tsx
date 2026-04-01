@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo, useState } from "react";
 
 export function ContactPanel() {
@@ -23,7 +25,7 @@ export function ContactPanel() {
         Contact
       </p>
       <h3 className="mt-4 font-['Space_Grotesk'] text-3xl font-semibold leading-tight text-white">
-        Call or email for a free estimate in{" "}
+        Call or email for a free estimate from{" "}
         <a
           href={mapsHref}
           target="_blank"
@@ -35,7 +37,7 @@ export function ContactPanel() {
         .
       </h3>
       <p className="mt-4 text-base leading-8 text-slate-300">
-        Serving{" "}
+        Based in{" "}
         <a
           href={mapsHref}
           target="_blank"
@@ -44,8 +46,9 @@ export function ContactPanel() {
         >
           Cookeville, Tennessee
         </a>{" "}
-        with collision repair, custom paint, restoration work, and
-        insurance-related repairs backed by 35+ years of shop experience.
+        with collision repair, paint and refinish, restoration work, and
+        insurance-related repairs for customers across Putnam County and
+        surrounding areas, backed by decades of shop experience.
       </p>
 
       <a
@@ -89,7 +92,7 @@ export function ContactPanel() {
         href={mailtoHref}
         className="mt-8 inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/6 px-6 py-4 text-sm font-semibold text-white transition hover:border-lime-300/35 hover:bg-white/10"
       >
-        Compose shop email
+        Start an email
       </a>
 
       <a
@@ -98,7 +101,7 @@ export function ContactPanel() {
         rel="noreferrer"
         className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/4 px-6 py-4 text-sm font-semibold text-slate-100 transition hover:border-lime-300/30 hover:bg-white/8"
       >
-        Visit us on Facebook
+        Visit the Facebook page
       </a>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">

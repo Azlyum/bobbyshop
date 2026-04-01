@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "next": "^15.2.4",
+    "next": "^16.2.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
   "scripts": {
-    "dev": "next dev",
+    "clean": "node -e \"require('fs').rmSync('.next', { recursive: true, force: true })\"",
+    "dev": "next dev --webpack",
+    "dev:reset": "npm run clean && npm run dev",
     "build": "next build",
     "start": "next start"
   },
@@ -19,6 +21,6 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.18",
-    "typescript": "^4.9.5"
+    "typescript": "^5.1.0"
   }
 }

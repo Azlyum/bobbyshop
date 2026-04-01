@@ -89,7 +89,7 @@ export const serviceHighlights: ServiceHighlight[] = [
   {
     kicker: 'Special fabrication',
     title: 'Custom pieces, restoration, and oddball work',
-    description: 'Old trucks, bike parts, fiberglass pieces, rust repair, and one of a kind custom ideas all get the same attention as the collision side of the shop.',
+    description: 'Old trucks, bike parts, fiberglass pieces, rust repair, and one-of-a-kind custom ideas all get the same attention as the collision side of the shop.',
     points: ['Rust repair and restoration work.', 'Fiberglass and body mods.', 'Sandblasting and specialty add-ons.'],
     pointsStyle: 'text',
     imageSrc: '/Images/harley-tank-blue-flames_after.webp',
@@ -578,14 +578,14 @@ export const faqItems: FaqItem[] = [
   },
   {
     question: 'Do you handle insurance work?',
-    answer: 'Yes. If the job is going through insurance, the shop can work through that side of it with you.'
+    answer: 'Yes. The shop can help you work through the insurance side of the repair.'
   },
   {
     question: 'Can I book paint or fabrication work even if it is not collision related?',
-    answer: 'Yes. Paint, graphics, fabrication, restoration, fiberglass work, and similar custom jobs can all be booked without collision damage being involved.'
+    answer: 'Yes. Paint, graphics, fabrication, restoration, fiberglass work, and similar custom jobs do not need to be tied to a collision claim.'
   },
   {
     question: 'How should I contact the shop first?',
-    answer: 'Call if you want the fastest answer. If email is easier, send photos and a short note about what you need done.'
+    answer: 'Call for the fastest answer. If email is easier, send photos and a short note about the job.'
   }
 ];

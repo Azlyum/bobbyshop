@@ -109,7 +109,7 @@ export function GalleryModal({
                     alt={item.imageAlt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                    className="object-cover transition duration-500 group-hover:scale-[1.04] group-hover:brightness-110"
+                    className="image-soft-fade object-cover transition duration-500 group-hover:scale-[1.04] group-hover:brightness-110"
                   />
                 </div>
                 <div className="border-t border-white/10 px-4 py-4">

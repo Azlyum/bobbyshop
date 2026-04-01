@@ -1,5 +1,5 @@
-import { InteractiveImage, SpotlightImage } from './InteractiveImage';
-import { ServiceHighlight } from '../data/siteContent';
+import { InteractiveImage, SpotlightImage } from "./InteractiveImage";
+import { ServiceHighlight } from "../data/siteContent";
 
 type ServiceCardProps = {
   service: ServiceHighlight;
@@ -8,8 +8,13 @@ type ServiceCardProps = {
   onOpen: (image: SpotlightImage) => void;
 };
 
-export function ServiceCard({ service, onPreviewStart, onPreviewEnd, onOpen }: ServiceCardProps) {
-  const renderBubblePoints = service.pointsStyle !== 'text';
+export function ServiceCard({
+  service,
+  onPreviewStart,
+  onPreviewEnd,
+  onOpen,
+}: ServiceCardProps) {
+  const renderBubblePoints = service.pointsStyle !== "text";
 
   return (
     <article className="panel group flex h-full flex-col overflow-hidden rounded-[2rem] p-4 sm:p-6">
@@ -18,7 +23,7 @@ export function ServiceCard({ service, onPreviewStart, onPreviewEnd, onOpen }: S
           src: service.imageSrc,
           alt: service.imageAlt,
           label: service.title,
-          sizes: '(max-width: 1024px) 100vw, 33vw'
+          sizes: "(max-width: 1024px) 100vw, 33vw",
         }}
         wrapperClassName="rounded-[1.5rem] border border-white/10 bg-slate-950/60"
         imageClassName="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.02]"
@@ -26,14 +31,23 @@ export function ServiceCard({ service, onPreviewStart, onPreviewEnd, onOpen }: S
         onPreviewEnd={onPreviewEnd}
         onOpen={onOpen}
       />
-      <p className="mt-5 text-sm uppercase tracking-[0.32em] text-slate-400">{service.kicker}</p>
-      <h3 className="mt-4 font-['Space_Grotesk'] text-2xl font-semibold text-white">{service.title}</h3>
-      <p className="mt-4 text-base leading-8 text-slate-300">{service.description}</p>
+      <p className="mt-5 text-sm uppercase tracking-[0.32em] text-slate-400">
+        {service.kicker}
+      </p>
+      <h3 className="mt-4 font-['Space_Grotesk'] text-2xl font-semibold text-white">
+        {service.title}
+      </h3>
+      <p className="mt-4 text-base leading-8 text-slate-300">
+        {service.description}
+      </p>
       {service.points.length > 0 ? (
         renderBubblePoints ? (
           <ul className="mt-6 space-y-3">
             {service.points.map((point) => (
-              <li key={point} className="rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-200">
+              <li
+                key={point}
+                className="rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-200"
+              >
                 {point}
               </li>
             ))}

@@ -30,7 +30,7 @@ export function BeforeAfterCard({ item, onPreviewStart, onPreviewEnd, onOpen }: 
       <InteractiveImage
         image={spotlightImage}
         wrapperClassName="rounded-[1.5rem] border border-white/10 bg-slate-950/60"
-        imageClassName="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.03] group-hover:brightness-110"
+        imageClassName="image-soft-fade h-56 w-full object-cover transition duration-500 group-hover:scale-[1.03] group-hover:brightness-110"
         onPreviewStart={onPreviewStart}
         onPreviewEnd={onPreviewEnd}
         onOpen={onOpen}
