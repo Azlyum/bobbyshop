@@ -6,7 +6,7 @@ Production URL: `https://www.mccloudscollision.com`
 
 ## Overview
 
-This project is a React + TypeScript single-page site for a local collision and custom paint shop. It is focused on:
+This project is a Next.js + React + TypeScript marketing site for a local collision and custom paint shop. It is focused on:
 
 - presenting shop services and finished work
 - driving direct contact by phone, email, Facebook, and maps
@@ -18,13 +18,18 @@ The site is currently static on the frontend. Backend-driven booking is intentio
 
 - React
 - TypeScript
-- Create React App
+- Next.js App Router
 - Tailwind CSS
+- npm as the standard package manager
 
 ## Project Structure
 
-- `src/app/App.tsx`
-  Main page composition and top-level interaction state.
+- `src/app/HomePage.tsx`
+  Main page composition and top-level interaction state for the landing page.
+- `app/layout.tsx`
+  Next.js root layout, metadata, fonts, and structured data shell.
+- `app/page.tsx`
+  Next.js homepage route that renders the landing page component.
 - `src/components/`
   Reusable UI components such as cards, spotlight, gallery modal, FAQ, and contact panel.
 - `src/data/siteContent.ts`
@@ -33,6 +38,12 @@ The site is currently static on the frontend. Backend-driven booking is intentio
   Static assets, metadata files, favicon, sitemap, and robots directives.
 
 ## Local Development
+
+Package manager:
+
+```text
+npm
+```
 
 Install dependencies:
 
@@ -43,7 +54,7 @@ npm install
 Start the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
 Default local URL:
@@ -54,10 +65,10 @@ http://localhost:3000
 
 ## Available Scripts
 
-Run the test suite:
+Start the production server locally after a build:
 
 ```bash
-npm test
+npm start
 ```
 
 Create a production build:
@@ -105,16 +116,16 @@ The codebase currently includes the main frontend SEO foundations:
 
 Relevant files:
 
-- [public/index.html](public/index.html)
+- [app/layout.tsx](app/layout.tsx)
 - [public/robots.txt](public/robots.txt)
 - [public/sitemap.xml](public/sitemap.xml)
 - [public/manifest.json](public/manifest.json)
 
 ## Deployment Notes
 
-- `package.json` is configured with the production homepage:
+- production URLs and metadata are configured for:
   `https://www.mccloudscollision.com`
-- production assets are generated in `build/`
+- production assets are generated through the Next.js build output
 - after deploy, verify indexing and sitemap submission in Google Search Console:
   `https://www.mccloudscollision.com/sitemap.xml`
 
@@ -122,4 +133,5 @@ Relevant files:
 
 - booking is not connected to a backend and is currently disabled in the UI
 - the gallery and shop content are maintained manually through local data files
+- backend auth/admin tooling is intentionally out of scope in this migration pass
 - SEO setup in the repo is complete on the frontend side, but Search Console, Business Profile, citations, and review strategy remain operational concerns outside this codebase

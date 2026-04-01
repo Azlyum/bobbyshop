@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BeforeAfterCard } from "../components/BeforeAfterCard";
 import { ContactPanel } from "../components/ContactPanel";
@@ -21,7 +23,7 @@ import {
   stats,
 } from "../data/siteContent";
 
-function App() {
+function HomePage() {
   type HeroServiceLink = {
     title: string;
     description: string;
@@ -97,10 +99,9 @@ function App() {
     label: "McClouds Collision and Customs logo",
   };
   const heroTransformationBefore = useMemo<SpotlightImage>(() => {
-    const beforeImage =
-      heroTransformationCase.gallery?.find((image) =>
-        image.label.toLowerCase().includes("before"),
-      ) ??
+    const beforeImage = heroTransformationCase.gallery?.find((image) =>
+      image.label.toLowerCase().includes("before"),
+    ) ??
       heroTransformationCase.gallery?.[0] ?? {
         label: "Before work",
         imageSrc: heroTransformationCase.imageSrc,
@@ -428,7 +429,7 @@ function App() {
                 </a>
               </h1>
               <p className="mt-4 font-['Space_Grotesk'] text-2xl font-semibold text-lime-100 sm:text-3xl">
-                We Fix It. We Paint It. We Make It Better.
+                Precision Repairs. Flawless Paint. Results That Last.
               </p>
               <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-300">
                 Serving{" "}
@@ -503,8 +504,8 @@ function App() {
               </a>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
                 McCloud&apos;s handles collision repair, custom paint,
-                fabrication, bikes, trucks, insurance work, and restoration
-                jobs for drivers across{" "}
+                fabrication, bikes, trucks, insurance work, and restoration jobs
+                for drivers across{" "}
                 <a
                   href={mapsHref}
                   target="_blank"
@@ -826,14 +827,11 @@ function App() {
         </div>
       </section>
 
-      <section
-        id="booking"
-        className="relative overflow-hidden"
-      >
+      <section id="booking" className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.9),rgba(2,6,23,0.96)),radial-gradient(circle_at_top_right,rgba(163,230,53,0.08),transparent_28%)]" />
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(135deg,transparent_0,transparent_46%,rgba(255,255,255,0.95)_50%,transparent_54%,transparent_100%)] [background-size:18px_18px]" />
         <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-6 py-24 lg:grid-cols-[0.9fr] lg:px-8">
-        {/* Booking form is disabled until the backend workflow is ready.
+          {/* Booking form is disabled until the backend workflow is ready.
         <div>
           <SectionHeading
             eyebrow="Booking"
@@ -905,4 +903,4 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;
