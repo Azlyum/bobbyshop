@@ -3,6 +3,8 @@ import { useMemo, useState } from "react";
 export function ContactPanel() {
   const [senderName, setSenderName] = useState("");
   const [projectType, setProjectType] = useState("Collision estimate");
+  const facebookHref =
+    "https://www.facebook.com/profile.php?id=61555435137428&__tn__=%2Cd";
   const mapsHref =
     "https://www.google.com/maps/dir/?api=1&destination=1309+W+Broad+St,+Cookeville,+TN+38501";
 
@@ -67,6 +69,15 @@ export function ContactPanel() {
         className="mt-8 inline-flex w-full items-center justify-center rounded-full border border-orange-300/35 bg-orange-300/10 px-6 py-4 text-sm font-semibold text-orange-100 transition hover:border-orange-200 hover:bg-orange-300/15"
       >
         Compose shop email
+      </a>
+
+      <a
+        href={facebookHref}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-blue-300/35 bg-blue-300/10 px-6 py-4 text-sm font-semibold text-blue-100 transition hover:border-blue-200 hover:bg-blue-300/15"
+      >
+        Visit us on Facebook
       </a>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">

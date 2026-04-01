@@ -26,6 +26,8 @@ function App() {
   const [beforeAfterStartIndex, setBeforeAfterStartIndex] = useState(0);
   const previewStartTimeoutRef = useRef<number | null>(null);
   const previewEndTimeoutRef = useRef<number | null>(null);
+  const facebookHref =
+    "https://www.facebook.com/profile.php?id=61555435137428&__tn__=%2Cd";
   const mapsHref =
     "https://www.google.com/maps/dir/?api=1&destination=1309+W+Broad+St,+Cookeville,+TN+38501";
 
@@ -145,24 +147,26 @@ function App() {
         <div className="absolute left-[-8rem] top-24 h-72 w-72 rounded-full bg-lime-300/10 blur-[120px]" />
         <div className="absolute right-[-6rem] top-32 h-80 w-80 rounded-full bg-cyan-300/10 blur-[140px]" />
         <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 pb-20 pt-8 lg:px-8">
-          <header className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-            <div className="max-w-[38rem]">
+          <header className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-[56rem]">
+              <h1 className="mt-3 text-balance font-['Space_Grotesk'] text-2xl font-semibold uppercase tracking-[0.08em] text-slate-100 sm:whitespace-nowrap sm:text-3xl lg:text-[2.6rem]">
+                McCloud&apos;s Collision and Customs
+              </h1>
               <p className="text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-400">
                 Cookeville, Tennessee
-              </p>
-              <p className="mt-3 font-['Space_Grotesk'] text-xl font-semibold uppercase tracking-[0.32em] text-slate-100">
-                McCloud&apos;s Collision and Customs
               </p>
               <p className="mt-2 text-sm text-slate-300">
                 Collision repair, custom paint, bodywork, refinishing
               </p>
             </div>
-            <a
-              href="#booking"
-              className="inline-flex items-center justify-center self-start rounded-full border border-lime-300/35 bg-lime-300/10 px-5 py-3 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15 sm:self-auto"
-            >
-              Get in touch with the shop
-            </a>
+            <div className="pt-2 sm:pt-10">
+              <a
+                href="#booking"
+                className="inline-flex items-center justify-center self-start rounded-full border border-lime-300/35 bg-lime-300/10 px-5 py-3 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15 sm:self-auto"
+              >
+                Get in touch with the shop
+              </a>
+            </div>
           </header>
 
           <div className="grid flex-1 items-start gap-14 py-14 lg:grid-cols-[1fr_1.02fr] lg:py-20">
@@ -222,6 +226,14 @@ function App() {
                   className="inline-flex items-center justify-center rounded-full border border-white/15 px-6 py-4 text-sm font-semibold text-slate-100 transition hover:border-white/30 hover:bg-white/5"
                 >
                   Email the shop
+                </a>
+                <a
+                  href={facebookHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-blue-300/25 bg-blue-300/10 px-6 py-4 text-sm font-semibold text-blue-50 transition hover:border-blue-200 hover:bg-blue-300/15"
+                >
+                  Facebook
                 </a>
                 <a
                   href="tel:9313193933"
