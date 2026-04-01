@@ -308,7 +308,7 @@ function App() {
           </div>
           <a
             href="tel:9313193933"
-            className="inline-flex items-center justify-center rounded-full border border-lime-300/35 bg-lime-300/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15 sm:px-5"
+            className="inline-flex items-center justify-center rounded-full border border-lime-300/40 bg-lime-300/12 px-4 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-lime-50 shadow-[0_10px_30px_rgba(132,204,22,0.14)] transition duration-300 hover:-translate-y-0.5 hover:border-lime-200 hover:bg-lime-300/18 hover:shadow-[0_18px_36px_rgba(132,204,22,0.2)] sm:px-5"
           >
             Call (931) 319-3933
           </a>
@@ -316,7 +316,7 @@ function App() {
       </div>
       <a
         href="tel:9313193933"
-        className={`fixed bottom-4 left-4 right-4 z-50 inline-flex items-center justify-center rounded-full border border-lime-300/40 bg-slate-950/92 px-5 py-4 text-sm font-semibold text-lime-50 shadow-[0_20px_50px_rgba(2,6,23,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-lime-200 hover:bg-slate-900 sm:bottom-6 sm:left-auto sm:right-6 sm:px-6 ${
+        className={`fixed bottom-4 left-4 right-4 z-50 inline-flex items-center justify-center rounded-full border border-lime-300/40 bg-slate-950/92 px-5 py-4 text-sm font-semibold text-lime-50 shadow-[0_20px_50px_rgba(2,6,23,0.45)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-lime-200 hover:bg-slate-900 hover:shadow-[0_24px_60px_rgba(132,204,22,0.18)] sm:bottom-6 sm:left-auto sm:right-6 sm:px-6 ${
           showFloatingCallPill
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0"
@@ -350,10 +350,10 @@ function App() {
         <div className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-6 pb-20 pt-8 lg:px-8">
           <header className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-[56rem]">
-              <p className="text-lg font-semibold uppercase tracking-[0.12em] text-slate-200 sm:text-xl lg:text-2xl">
+              <p className="text-lg font-semibold uppercase tracking-[0.1em] text-slate-200 sm:text-xl lg:text-2xl">
                 McCloud&apos;s Collision &amp; Customs
               </p>
-              <h1 className="mt-3 max-w-4xl font-['Space_Grotesk'] text-4xl font-semibold leading-[0.94] text-white sm:text-5xl lg:text-[5.2rem]">
+              <h1 className="mt-2 max-w-4xl font-['Space_Grotesk'] text-4xl font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-5xl lg:text-[5.2rem]">
                 Collision Repair &amp; Custom Paint in{" "}
                 <a
                   href={mapsHref}
@@ -364,10 +364,10 @@ function App() {
                   Cookeville, TN
                 </a>
               </h1>
-              <p className="mt-5 font-['Space_Grotesk'] text-2xl font-semibold text-lime-100 sm:text-3xl">
+              <p className="mt-4 font-['Space_Grotesk'] text-2xl font-semibold text-lime-100 sm:text-3xl">
                 Real repair work. Clean custom paint.
               </p>
-              <p className="mt-4 text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-400">
+              <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.34em] text-slate-300">
                 Serving{" "}
                 <a
                   href={mapsHref}
@@ -378,30 +378,33 @@ function App() {
                   Cookeville, Tennessee
                 </a>
               </p>
-              <p className="mt-3 text-sm text-slate-300">
+              <p className="mt-2 text-sm leading-7 text-slate-200">
                 Free estimates. Insurance claims welcome. Locally owned in
                 Cookeville with 35+ years of hands-on collision repair, custom
                 paint, restoration work, and bike and truck builds.
               </p>
             </div>
-            <div className="pt-2 sm:pt-10">
+            <div className="pt-2 sm:pt-9">
               <a
                 href="tel:9313193933"
-                className="inline-flex items-center justify-center self-start rounded-full border border-lime-300/35 bg-lime-300/10 px-5 py-3 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15 sm:self-auto"
+                className="inline-flex items-center justify-center self-start rounded-full border border-lime-300/45 bg-lime-300/18 px-6 py-4 text-sm font-semibold text-lime-50 shadow-[0_16px_34px_rgba(132,204,22,0.2)] transition duration-300 hover:-translate-y-0.5 hover:border-lime-200 hover:bg-lime-300/24 hover:shadow-[0_22px_44px_rgba(132,204,22,0.28)] sm:self-auto"
               >
                 Call now: (931) 319-3933
               </a>
+              <p className="mt-3 text-xs font-medium text-slate-300">
+                Free estimates. Insurance claims welcome.
+              </p>
             </div>
           </header>
 
           <div className="grid flex-1 items-start gap-14 py-14 lg:grid-cols-[1fr_1.02fr] lg:py-20">
             <div>
-              <div className="relative mb-8 w-full max-w-[38rem]">
-                <div className="absolute inset-0 rounded-[2.25rem] bg-[radial-gradient(circle_at_18%_18%,rgba(163,230,53,0.22),transparent_26%),radial-gradient(circle_at_78%_28%,rgba(34,211,238,0.2),transparent_30%),linear-gradient(135deg,rgba(15,23,42,0.9),rgba(2,6,23,0.68))]" />
+              <div className="relative mb-7 w-full max-w-[34rem]">
+                <div className="absolute inset-0 rounded-[2.25rem] bg-[radial-gradient(circle_at_18%_18%,rgba(163,230,53,0.18),transparent_26%),radial-gradient(circle_at_78%_28%,rgba(255,255,255,0.09),transparent_30%),linear-gradient(135deg,rgba(15,23,42,0.84),rgba(2,6,23,0.62))]" />
                 <InteractiveImage
                   image={previewThemeImage}
-                  wrapperClassName="rounded-[2.25rem] border border-lime-300/20 bg-transparent px-5 py-5 shadow-[0_38px_120px_rgba(2,6,23,0.55)] sm:px-8 sm:py-7"
-                  imageClassName="relative mx-auto h-40 w-full object-contain sm:h-48 lg:h-56"
+                  wrapperClassName="rounded-[2.25rem] border border-lime-300/16 bg-transparent px-4 py-4 shadow-[0_30px_90px_rgba(2,6,23,0.42)] sm:px-7 sm:py-6"
+                  imageClassName="relative mx-auto h-32 w-full object-contain sm:h-40 lg:h-48"
                   overlayLabel="Open logo artwork"
                   onPreviewStart={handlePreviewStart}
                   onPreviewEnd={handlePreviewEnd}
@@ -416,7 +419,7 @@ function App() {
               >
                 Based in Cookeville, TN at 1309 W. Broad Street.
               </a>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
                 McCloud&apos;s handles collision repair, custom paint,
                 fabrication, bikes, trucks, insurance work, and restoration
                 jobs for drivers across{" "}
@@ -431,7 +434,7 @@ function App() {
                 . One of the few shops with a computer color scanner to match
                 paint and mix the paint in-house.
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-6 inline-flex max-w-2xl flex-wrap gap-2 rounded-[1.7rem] border border-white/10 bg-white/[0.04] p-2 shadow-[0_16px_40px_rgba(0,0,0,0.16)]">
                 {[
                   "Free Estimates",
                   "Insurance Claims Welcome",
@@ -440,7 +443,7 @@ function App() {
                 ].map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-100"
+                    className="rounded-full border border-lime-300/18 bg-lime-300/[0.08] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-lime-50"
                   >
                     {item}
                   </span>
@@ -529,16 +532,16 @@ function App() {
 
             <div className="space-y-5 lg:pt-3">
               <div className="panel relative overflow-hidden rounded-[2.25rem] p-5 sm:p-7">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(163,230,53,0.14),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.12),transparent_38%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(163,230,53,0.16),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.06),transparent_38%)]" />
                 <div className="relative">
                   <div className="max-w-xl">
                     <p className="text-sm uppercase tracking-[0.32em] text-slate-400">
                       Featured transformation
                     </p>
-                    <h2 className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold text-white">
+                    <h2 className="mt-3 font-['Space_Grotesk'] text-3xl font-semibold tracking-[-0.02em] text-white">
                       Before and after work customers can read instantly.
                     </h2>
-                    <p className="mt-4 text-sm leading-7 text-slate-300">
+                    <p className="mt-4 text-sm leading-7 text-slate-200">
                       Real before-and-after repair work from McCloud&apos;s
                       Collision &amp; Customs in{" "}
                       <a
@@ -570,20 +573,20 @@ function App() {
                     ].map((item) => (
                       <div
                         key={item.label}
-                        className="overflow-hidden rounded-[1.9rem] border border-white/10 bg-slate-950/55"
+                        className="overflow-hidden rounded-[1.9rem] border border-lime-300/18 bg-slate-950/58 shadow-[0_24px_70px_rgba(0,0,0,0.24)]"
                       >
                         <div className="relative">
                           <InteractiveImage
                             image={item.image}
                             wrapperClassName="rounded-none border-0 bg-transparent"
-                            imageClassName="h-64 w-full object-cover sm:h-72"
+                            imageClassName="h-64 w-full object-cover transition duration-500 group-hover:scale-[1.04] group-hover:brightness-110 sm:h-72"
                             overlayLabel={`Open ${item.label.toLowerCase()} image`}
                             onPreviewStart={handlePreviewStart}
                             onPreviewEnd={handlePreviewEnd}
                             onOpen={handleOpenImage}
                           />
                           <span
-                            className={`pointer-events-none absolute left-4 top-4 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] ${item.accentClassName}`}
+                            className={`pointer-events-none absolute left-4 top-4 rounded-full border px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.3em] shadow-[0_12px_28px_rgba(0,0,0,0.22)] ${item.accentClassName}`}
                           >
                             {item.label}
                           </span>
@@ -606,7 +609,7 @@ function App() {
                     <button
                       type="button"
                       onClick={handleOpenGallery}
-                      className="inline-flex items-center justify-center rounded-full border border-lime-300/35 bg-lime-300/10 px-6 py-4 text-sm font-semibold text-lime-50 transition hover:border-lime-200 hover:bg-lime-300/15"
+                      className="inline-flex items-center justify-center rounded-full border border-lime-300/40 bg-lime-300/14 px-6 py-4 text-sm font-semibold text-lime-50 shadow-[0_14px_36px_rgba(132,204,22,0.16)] transition duration-300 hover:-translate-y-0.5 hover:border-lime-200 hover:bg-lime-300/20 hover:shadow-[0_20px_44px_rgba(132,204,22,0.24)]"
                     >
                       View Full Gallery
                     </button>

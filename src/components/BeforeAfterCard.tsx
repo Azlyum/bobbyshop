@@ -25,11 +25,11 @@ export function BeforeAfterCard({ item, onPreviewStart, onPreviewEnd, onOpen }: 
   );
 
   return (
-    <article className="panel flex h-full flex-col overflow-hidden rounded-[2rem] p-4 sm:p-6">
+    <article className="panel group flex h-full flex-col overflow-hidden rounded-[2rem] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-1 hover:border-lime-300/25 sm:p-6">
       <InteractiveImage
         image={spotlightImage}
         wrapperClassName="rounded-[1.5rem] border border-white/10 bg-slate-950/60"
-        imageClassName="h-56 w-full object-cover"
+        imageClassName="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.03] group-hover:brightness-110"
         onPreviewStart={onPreviewStart}
         onPreviewEnd={onPreviewEnd}
         onOpen={onOpen}
@@ -43,12 +43,12 @@ export function BeforeAfterCard({ item, onPreviewStart, onPreviewEnd, onOpen }: 
       </div>
 
       <div className="mt-8 grid gap-4">
-        <div className="rounded-[1.5rem] border border-red-300/15 bg-red-400/[0.07] p-5">
-          <p className="text-xs uppercase tracking-[0.28em] text-red-100/80">Before</p>
+        <div className="rounded-[1.5rem] border border-red-300/18 bg-red-400/[0.08] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+          <p className="inline-flex rounded-full border border-red-200/18 bg-red-950/45 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.3em] text-red-50 shadow-[0_10px_24px_rgba(0,0,0,0.18)]">BEFORE</p>
           <p className="mt-3 text-sm leading-7 text-slate-200">{item.before}</p>
         </div>
-        <div className="rounded-[1.5rem] border border-emerald-300/15 bg-emerald-400/[0.07] p-5">
-          <p className="text-xs uppercase tracking-[0.28em] text-emerald-100/80">After</p>
+        <div className="rounded-[1.5rem] border border-emerald-300/18 bg-emerald-400/[0.08] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+          <p className="inline-flex rounded-full border border-emerald-200/18 bg-emerald-950/45 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.3em] text-emerald-50 shadow-[0_10px_24px_rgba(0,0,0,0.18)]">AFTER</p>
           <p className="mt-3 text-sm leading-7 text-slate-200">{item.after}</p>
         </div>
       </div>
